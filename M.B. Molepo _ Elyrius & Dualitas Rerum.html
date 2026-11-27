@@ -1,0 +1,2128 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>M.B. MOLEPO | Elyrius &amp; Dualitas Rerum — Official Sanctum</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Cinzel Decorative, Cinzel, Cormorant Garamond, Space Grotesk & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#04060b',
+            void: '#090d18',
+            sanctum: '#0e1424',
+            azure: {
+              light: '#7dd3fc',
+              DEFAULT: '#38bdf8',
+              dark: '#0284c7',
+            },
+            stardust: {
+              light: '#fde68a',
+              DEFAULT: '#f59e0b',
+              dark: '#b45309',
+            },
+            entropic: {
+              light: '#c4b5fd',
+              DEFAULT: '#8b5cf6',
+              dark: '#5b21b6',
+            },
+            crimson: {
+              light: '#f87171',
+              DEFAULT: '#dc2626',
+              dark: '#7f1d1d',
+            },
+            parchment: '#ebe6dc',
+            ash: '#94a3b8',
+          },
+          fontFamily: {
+            display: ['"Cinzel Decorative"', 'serif'],
+            serif: ['"Cinzel"', 'serif'],
+            prose: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --essence-primary: #38bdf8;
+      --essence-secondary: #f59e0b;
+      --essence-glow: rgba(56, 189, 248, 0.25);
+      --essence-gold-glow: rgba(245, 158, 11, 0.22);
+      --essence-bg-radial: rgba(56, 189, 248, 0.11);
+    }
+
+    body.mode-entropic {
+      --essence-primary: #8b5cf6;
+      --essence-secondary: #dc2626;
+      --essence-glow: rgba(139, 92, 246, 0.28);
+      --essence-gold-glow: rgba(220, 38, 38, 0.25);
+      --essence-bg-radial: rgba(139, 92, 246, 0.14);
+    }
+
+    body {
+      background-color: #04060b;
+      color: #ebe6dc;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #04060b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--essence-secondary);
+    }
+
+    /* Living Celestial Serpent Background Canvas */
+    #serpent-ritual-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Gothic Cathedral Arch & Lattice Borders */
+    .gothic-card {
+      background: linear-gradient(180deg, rgba(14, 20, 36, 0.86) 0%, rgba(4, 6, 11, 0.94) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(56, 189, 248, 0.04);
+      backdrop-filter: blur(10px);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .gothic-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--essence-secondary);
+      box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.95), 0 0 30px var(--essence-glow);
+    }
+
+    .gothic-arch-top {
+      border-radius: 140px 140px 16px 16px;
+    }
+
+    /* 3D Tome Frame */
+    .tome-cover {
+      position: relative;
+      box-shadow: -14px 18px 34px rgba(0, 0, 0, 0.92), 0 0 24px var(--essence-glow);
+      transition: transform 0.45s ease, box-shadow 0.45s ease;
+    }
+    .tome-cover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 4%, rgba(0,0,0,0.45) 8%, transparent 16%);
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .gothic-card:hover .tome-cover {
+      transform: scale(1.03) rotateY(-5deg);
+      box-shadow: -18px 24px 44px rgba(0, 0, 0, 0.96), 0 0 34px var(--essence-gold-glow);
+    }
+
+    /* Sanctum Ambient Radial Glow */
+    .sanctum-aura {
+      background: radial-gradient(circle at 50% 18%, var(--essence-bg-radial) 0%, rgba(4, 6, 11, 0.96) 72%);
+      transition: background 0.8s ease;
+    }
+
+    /* Ritual Sigil Rotation */
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinReverseSlow {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    .sigil-spin {
+      animation: spinSlow 45s linear infinite;
+    }
+    .sigil-spin-reverse {
+      animation: spinReverseSlow 60s linear infinite;
+    }
+
+    /* Ornate Cathedral Divider */
+    .ritual-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .ritual-divider::before,
+    .ritual-divider::after {
+      content: '';
+      height: 1px;
+      flex: 1;
+      max-width: 180px;
+      background: linear-gradient(90deg, transparent, var(--essence-secondary), transparent);
+    }
+
+    /* Chapter Reader Typography */
+    .codex-prose p {
+      margin-bottom: 1.35rem;
+      text-indent: 1.5rem;
+    }
+    .codex-prose p:first-of-type {
+      text-indent: 0;
+    }
+    .codex-prose p:first-of-type::first-letter {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 3.4rem;
+      float: left;
+      line-height: 0.85;
+      padding-right: 0.75rem;
+      padding-top: 0.25rem;
+      color: #f59e0b;
+    }
+  </style>
+</head>
+<body class="relative antialiased selection:bg-stardust selection:text-obsidian">
+
+  <!-- FULL-SCREEN LIVING CELESTIAL SERPENT & ESSENCE PARTICLES CANVAS -->
+  <canvas id="serpent-ritual-canvas"></canvas>
+
+  <!-- NON-INTRUSIVE TOAST NOTIFICATIONS -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-[100] flex flex-col gap-2.5 pointer-events-none"></div>
+
+  <!-- STICKY RITUAL HEADER -->
+  <header class="sticky top-0 z-40 bg-obsidian/85 backdrop-blur-xl border-b border-stardust/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-3">
+        
+        <!-- Custom Animated Dualitas Rerum Sigil + Author Name -->
+        <a href="#sanctum" class="flex items-center gap-3.5 group shrink-0">
+          <div id="header-logo-container" class="w-11 h-11 rounded-xl bg-void border border-stardust/40 flex items-center justify-center relative overflow-hidden shadow-lg group-hover:border-stardust transition">
+            <!-- Default Animated SVG Dualitas Sigil (Replaced if author uploads custom logo) -->
+            <svg id="default-sigil-svg" viewBox="0 0 100 100" class="w-9 h-9">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="8 5" class="sigil-spin" />
+              <circle cx="50" cy="50" r="30" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="14 6" class="sigil-spin-reverse" />
+              <polygon points="50,14 62,50 50,86 38,50" fill="none" stroke="#f59e0b" stroke-width="2" />
+              <polygon points="14,50 50,38 86,50 50,62" fill="none" stroke="#38bdf8" stroke-width="2" />
+              <circle cx="50" cy="50" r="6" fill="#f59e0b" />
+            </svg>
+            <img id="custom-logo-img" src="" alt="M.B. Molepo Logo" class="hidden w-full h-full object-contain p-1" />
+          </div>
+          <div>
+            <span id="nav-pen-name" class="font-display font-bold text-base sm:text-xl tracking-widest text-parchment block leading-none">M.B. MOLEPO</span>
+            <span class="font-mono text-[10px] tracking-[0.26em] text-azure uppercase block mt-1">Elyrius &bull; Dualitas Rerum</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden xl:flex items-center gap-7 text-xs font-serif tracking-[0.18em] uppercase text-ash">
+          <a href="#trilogy" class="hover:text-stardust transition">Foundation Trilogy</a>
+          <a href="#archive-100" class="hover:text-stardust transition">100-Tome Archive</a>
+          <a href="#reliquary" class="hover:text-stardust transition">Reliquary &amp; PDFs</a>
+          <a href="#architect" class="hover:text-stardust transition">The Architect</a>
+          <a href="#dispatch" class="hover:text-stardust transition">Whispers</a>
+        </nav>
+
+        <!-- Essence Polarity Switcher + Upload/Customize Trigger -->
+        <div class="flex items-center gap-2.5">
+          <!-- Prime Synergy vs Primal Entropic Ritual Toggle -->
+          <button onclick="toggleEssenceMode()" id="essence-toggle-btn" class="flex items-center gap-2 px-3 py-2 rounded-xl bg-void border border-azure/40 hover:border-stardust text-[11px] font-mono uppercase tracking-wider text-azure-light transition" title="Shift Sanctum Polarity: Prime Synergy vs Primal Entropic">
+            <span id="essence-dot" class="w-2 h-2 rounded-full bg-azure animate-pulse"></span>
+            <span id="essence-label" class="hidden sm:inline">Prime Synergy</span>
+          </button>
+
+          <!-- Upload Your Covers / Portrait & Export Button -->
+          <button onclick="openCustomizer()" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-stardust-dark to-stardust text-obsidian font-serif font-bold text-xs uppercase tracking-wider hover:brightness-110 transition shadow-lg">
+            <i class="fa-solid fa-upload"></i>
+            <span class="hidden md:inline">Upload Art &amp; Edit</span>
+            <span class="md:hidden">Edit</span>
+          </button>
+
+          <!-- Mobile Menu Button -->
+          <button onclick="toggleMobileNav()" class="xl:hidden p-2.5 rounded-xl bg-void border border-stardust/25 text-parchment hover:text-stardust">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-nav" class="hidden xl:hidden bg-void/95 border-b border-stardust/25 px-6 py-5 space-y-3.5 font-serif text-xs uppercase tracking-[0.2em]">
+      <a href="#trilogy" onclick="toggleMobileNav()" class="block text-parchment hover:text-stardust">I. Foundation Trilogy (Dualitas Rerum)</a>
+      <a href="#archive-100" onclick="toggleMobileNav()" class="block text-parchment hover:text-stardust">II. The 100-Tome Archive &amp; Bokamoso</a>
+      <a href="#reliquary" onclick="toggleMobileNav()" class="block text-parchment hover:text-stardust">III. The Essence Reliquary (Merch &amp; PDFs)</a>
+      <a href="#architect" onclick="toggleMobileNav()" class="block text-parchment hover:text-stardust">IV. Mamalema Brian Molepo</a>
+      <a href="#dispatch" onclick="toggleMobileNav()" class="block text-stardust">V. The Whispering Dispatch</a>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 1: HERO SANCTUM — ELYRIUS & DUALITAS RERUM                    -->
+  <!-- ===================================================================== -->
+  <section id="sanctum" class="relative z-10 sanctum-aura pt-12 pb-24 sm:pt-20 sm:pb-32 border-b border-stardust/15 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Ritual Banner: No Audiobooks Manifesto -->
+      <div class="flex justify-center mb-10">
+        <div class="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2 rounded-full bg-void/90 border border-stardust/35 text-xs font-mono text-parchment/90 shadow-2xl">
+          <span class="text-stardust"><i class="fa-solid fa-eye"></i> ELYRIUS COSMOS</span>
+          <span class="text-stardust/40">|</span>
+          <span class="text-azure-light">NO RACES &bull; GOVERNED BY ESSENCE</span>
+          <span class="text-stardust/40">|</span>
+          <span class="text-crimson-light font-semibold"><i class="fa-solid fa-ban mr-1"></i>NO AUDIOBOOKS — VOICES WHISPER ONLY IN YOUR MIND</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Column: Gothic Mythos Proclamation -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          <p class="font-mono text-xs sm:text-sm uppercase tracking-[0.3em] text-azure">
+            Mamalema Brian Molepo &bull; Foundation of a 100-Novel Universe
+          </p>
+
+          <h1 id="hero-title" class="font-display text-4xl sm:text-5xl lg:text-6xl font-black text-parchment leading-[1.12] tracking-wide">
+            Not Earth. <br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-azure-light via-stardust to-crimson-light">
+              Not Even Close.
+            </span>
+          </h1>
+
+          <p id="hero-subtitle" class="font-prose text-xl sm:text-2xl text-parchment/85 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Welcome to <strong class="text-stardust font-semibold">Elyrius</strong>—a dark, breathtaking realm with no races, driven purely by atmospheric <strong class="text-azure-light font-semibold">Essence</strong>, ancient lattices, and the rawest depths of human emotion. Begin the ritual with the foundation trilogy, <em class="text-stardust-light">Dualitas Rerum</em>.
+          </p>
+
+          <!-- Primary Ritual Actions -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+            <a href="#trilogy" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-stardust-dark via-stardust to-amber-500 text-obsidian font-serif font-bold uppercase tracking-wider text-xs sm:text-sm hover:brightness-110 transition shadow-xl flex items-center justify-center gap-3">
+              <i class="fa-solid fa-book-journal-whills"></i>
+              <span>Enter Dualitas Rerum (3 Books)</span>
+            </a>
+            <button onclick="openChapterReader(0)" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-void/90 hover:bg-sanctum text-azure-light font-serif font-semibold uppercase tracking-wider text-xs sm:text-sm border border-azure/40 hover:border-azure transition flex items-center justify-center gap-3">
+              <i class="fa-solid fa-scroll"></i>
+              <span>Read Book I — Chapter I</span>
+            </button>
+          </div>
+
+          <!-- Universe Pillars Strip -->
+          <div class="pt-6 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 border-t border-stardust/20">
+            <div>
+              <span class="font-display text-xl sm:text-2xl font-bold text-stardust block">3 Live</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-ash">Amazon KDP Tomes</span>
+            </div>
+            <div>
+              <span class="font-display text-xl sm:text-2xl font-bold text-azure block">100</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-ash">Novel Universe Goal</span>
+            </div>
+            <div>
+              <span class="font-display text-xl sm:text-2xl font-bold text-crimson-light block">0 Audio</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-ash">Pure Mind Whispers</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Gothic Cathedral Arch Showcase of the Trilogy -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md p-6 sm:p-8 gothic-card gothic-arch-top border border-stardust/40 text-center">
+            <!-- Rotating Background Astrolabe -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-15 pointer-events-none">
+              <svg viewBox="0 0 200 200" class="w-72 h-72 sigil-spin">
+                <circle cx="100" cy="100" r="90" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4 4"/>
+                <circle cx="100" cy="100" r="70" fill="none" stroke="#f59e0b" stroke-width="1"/>
+                <polygon points="100,10 190,100 100,190 10,100" fill="none" stroke="#f59e0b" stroke-width="1"/>
+              </svg>
+            </div>
+
+            <span class="font-mono text-[10px] uppercase tracking-[0.28em] text-stardust block mb-4">
+              The Foundation Trilogy
+            </span>
+
+            <!-- Fanned 3 Book Covers Preview -->
+            <div class="relative h-72 sm:h-80 flex items-center justify-center my-2">
+              <!-- Book 1 Left -->
+              <div onclick="openChapterReader(0)" class="cursor-pointer w-36 sm:w-40 aspect-[2/3] rounded-lg overflow-hidden border border-crimson/60 shadow-2xl transform -rotate-12 -translate-x-16 translate-y-3 hover:z-30 hover:scale-105 transition duration-300 bg-obsidian">
+                <img id="hero-fan-1" src="" alt="The Polarity Paradox" class="w-full h-full object-cover" />
+              </div>
+              <!-- Book 2 Center -->
+              <div onclick="openChapterReader(1)" class="cursor-pointer z-20 w-40 sm:w-44 aspect-[2/3] rounded-lg overflow-hidden border-2 border-azure shadow-2xl transform hover:scale-105 transition duration-300 bg-obsidian">
+                <img id="hero-fan-2" src="" alt="Godfall" class="w-full h-full object-cover" />
+              </div>
+              <!-- Book 3 Right -->
+              <div onclick="openChapterReader(2)" class="cursor-pointer w-36 sm:w-40 aspect-[2/3] rounded-lg overflow-hidden border border-entropic/60 shadow-2xl transform rotate-12 translate-x-16 translate-y-3 hover:z-30 hover:scale-105 transition duration-300 bg-obsidian">
+                <img id="hero-fan-3" src="" alt="The Polarity.exe" class="w-full h-full object-cover" />
+              </div>
+            </div>
+
+            <h2 class="font-serif text-xl font-bold text-parchment mt-4">DUALITAS RERUM</h2>
+            <p class="font-prose italic text-lg text-azure-light mt-1">
+              “The private road and the open road have become the same road.”
+            </p>
+            <div class="mt-4 pt-3 border-t border-stardust/20 flex items-center justify-center gap-2 text-[11px] font-mono text-ash">
+              <i class="fa-solid fa-wand-sparkles text-stardust"></i>
+              <span>Click any tome to read Chapter I</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 2: THE FOUNDATION TRILOGY — DUALITAS RERUM (BOOKS 1, 2 & 3)   -->
+  <!-- ===================================================================== -->
+  <section id="trilogy" class="relative z-10 py-24 bg-void/70 border-b border-stardust/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="font-mono text-xs uppercase tracking-[0.32em] text-azure">Live on Amazon KDP &bull; Print &amp; Digital</span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment">
+          Dualitas Rerum
+        </h2>
+        <div class="ritual-divider text-stardust"><i class="fa-solid fa-dharmachakra text-sm"></i></div>
+        <p class="font-prose text-xl sm:text-2xl text-ash">
+          Three eras of Koriyx, Lucina, and Nira across Elyrius—from the petrified iron-woods of Viandar to the neon-lit cyber-lattices of the mid-wards. Available in <span class="text-parchment">Kindle, Paperback, and Hardcover</span>.
+        </p>
+      </div>
+
+      <!-- 3 Books Grid -->
+      <div id="trilogy-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <!-- Rendered dynamically from siteState.books -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 3: THE 100-TOME ARCHIVE & BOKAMOSO SHRINE                     -->
+  <!-- ===================================================================== -->
+  <section id="archive-100" class="relative z-10 py-24 bg-obsidian/90 border-b border-stardust/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <span class="font-mono text-xs uppercase tracking-[0.32em] text-stardust">The Grand Blueprint of Elyrius</span>
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment">
+          The 100-Novel Chronicle
+        </h2>
+        <div class="ritual-divider text-azure"><i class="fa-solid fa-staff-snake text-sm"></i></div>
+        <p class="font-prose text-xl sm:text-2xl text-ash">
+          <em>Dualitas Rerum</em> is only the foundation stone. M.B. Molepo is forging an interconnected canon of <strong class="text-stardust">100 novels</strong>—each preserved in PDF, Paperback, and Hardcover—exploring the unknown, what humanity could become, and our darkest emotions.
+        </p>
+      </div>
+
+      <!-- Featured Future Installment Shrine: STARDUST ESSENCE: BOKAMOSO -->
+      <div class="gothic-card rounded-3xl p-6 sm:p-10 lg:p-12 mb-14 border border-azure/40 relative overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Bokamoso Cover Frame -->
+          <div class="lg:col-span-4 flex justify-center">
+            <div class="relative w-64 sm:w-72">
+              <div class="absolute -inset-4 bg-gradient-to-tr from-azure/30 via-stardust/25 to-transparent rounded-2xl blur-xl"></div>
+              <div class="relative tome-cover rounded-xl overflow-hidden border-2 border-azure/60 aspect-[2/3] bg-void">
+                <img id="bokamoso-cover-img" src="" alt="Stardust Essence: Bokamoso Cover" class="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bokamoso Lore & Ritual Status -->
+          <div class="lg:col-span-8 space-y-5 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-azure/15 border border-azure/40 text-azure-light font-mono text-xs uppercase tracking-widest">
+              <span class="w-2 h-2 rounded-full bg-stardust animate-ping"></span>
+              <span>Future Installment &bull; Currently In Forging</span>
+            </div>
+
+            <h3 id="bokamoso-title" class="font-display text-3xl sm:text-4xl font-bold text-parchment">
+              Stardust Essence: <span class="text-stardust">Bokamoso</span>
+            </h3>
+
+            <p id="bokamoso-desc" class="font-prose text-xl sm:text-2xl text-parchment/85 leading-relaxed">
+              Where ancient spirit-beasts—the Celestial Serpent, the Stardust Lion, the Frost Wolf, and the Shadow Feline—bind their essence to a new vessel. <em>Bokamoso</em> expands the edges of Elyrius into primordial myth and untamed cosmic instinct.
+            </p>
+
+            <!-- Key Elements Tags -->
+            <div class="flex flex-wrap justify-center lg:justify-start gap-2.5 pt-1 font-mono text-xs">
+              <span class="px-3 py-1.5 rounded-lg bg-void border border-azure/30 text-azure-light"><i class="fa-solid fa-dragon mr-1.5"></i>Celestial Serpent Mythos</span>
+              <span class="px-3 py-1.5 rounded-lg bg-void border border-stardust/30 text-stardust"><i class="fa-solid fa-sparkles mr-1.5"></i>Stardust Essence Binding</span>
+              <span class="px-3 py-1.5 rounded-lg bg-void border border-entropic/30 text-entropic-light"><i class="fa-solid fa-book mr-1.5"></i>PDF &bull; Paperback &bull; Hardcover</span>
+            </div>
+
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <a href="#dispatch" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-azure-dark to-azure text-obsidian font-serif font-bold text-xs uppercase tracking-wider hover:brightness-110 transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-bell"></i>
+                <span>Summon Me When Bokamoso Releases</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Visual 100-Tome Sigil Matrix -->
+      <div class="gothic-card rounded-2xl p-6 sm:p-8 border border-stardust/25">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-stardust/15">
+          <div>
+            <h4 class="font-serif text-lg font-bold text-parchment">The 100-Tome Seal Matrix</h4>
+            <p class="text-xs text-ash font-mono mt-0.5">3 Seals Forged &bull; 1 Seal Awakening (Bokamoso) &bull; 96 Seals Awaiting the Quill</p>
+          </div>
+          <div class="flex items-center gap-4 text-[11px] font-mono">
+            <span class="flex items-center gap-1.5 text-stardust"><span class="w-3 h-3 rounded-sm bg-stardust inline-block"></span> Live</span>
+            <span class="flex items-center gap-1.5 text-azure"><span class="w-3 h-3 rounded-sm bg-azure animate-pulse inline-block"></span> In Work</span>
+            <span class="flex items-center gap-1.5 text-ash"><span class="w-3 h-3 rounded-sm bg-void border border-slate-700 inline-block"></span> Unwritten</span>
+          </div>
+        </div>
+
+        <!-- 100 Interactive Rune Tiles -->
+        <div id="hundred-tomes-grid" class="grid grid-cols-10 sm:grid-cols-20 gap-1.5 sm:gap-2">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 4: THE ESSENCE RELIQUARY (MERCHANDISE & DIRECT PDF VAULT)     -->
+  <!-- ===================================================================== -->
+  <section id="reliquary" class="relative z-10 py-24 bg-void/80 border-b border-stardust/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
+        <div class="space-y-3">
+          <span class="font-mono text-xs uppercase tracking-[0.3em] text-stardust">Artifacts, Collector Hardcovers &amp; Direct PDFs</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment">
+            The Essence Reliquary
+          </h2>
+          <p class="font-prose text-xl sm:text-2xl text-ash max-w-2xl">
+            Claim physical relics from Elyrius, signed collector editions, and DRM-free author PDF editions crafted for readers who carry the dark within.
+          </p>
+        </div>
+        <div class="font-mono text-xs text-azure-light bg-obsidian/90 border border-azure/30 px-4 py-3 rounded-xl">
+          <i class="fa-solid fa-gem text-stardust mr-2"></i>Customizable Store Links &amp; Merch Photos
+        </div>
+      </div>
+
+      <!-- Merch & Direct Editions Grid -->
+      <div id="merch-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
+        <!-- Populated dynamically -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 5: THE ARCHITECT'S DOSSIER (MAMALEMA BRIAN MOLEPO)            -->
+  <!-- ===================================================================== -->
+  <section id="architect" class="relative z-10 py-24 bg-obsidian border-b border-stardust/15">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Author Portrait Frame -->
+        <div class="lg:col-span-5 flex flex-col items-center">
+          <div class="relative w-72 sm:w-80">
+            <!-- Geometric Essence Halo -->
+            <div class="absolute -inset-4 rounded-2xl border border-stardust/40 rotate-3 pointer-events-none"></div>
+            <div class="absolute -inset-4 rounded-2xl border border-azure/40 -rotate-3 pointer-events-none"></div>
+            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] border-2 border-stardust/70 bg-void shadow-2xl">
+              <img id="architect-portrait" src="" alt="Mamalema Brian Molepo (M.B. Molepo)" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <button onclick="openCustomizer('architect')" class="mt-5 px-4 py-2 rounded-lg bg-void hover:bg-sanctum border border-stardust/35 text-xs font-mono text-stardust transition flex items-center gap-2">
+            <i class="fa-solid fa-camera"></i>
+            <span>Upload / Swap Author Portrait</span>
+          </button>
+        </div>
+
+        <!-- Author Manifesto & Biography -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-stardust/15 border border-stardust/35 text-stardust font-mono text-xs uppercase tracking-widest">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>South Africa &bull; Creator of Elyrius</span>
+          </div>
+
+          <h2 id="architect-name" class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-parchment">
+            Mamalema Brian Molepo
+          </h2>
+          <p class="font-serif text-sm uppercase tracking-[0.25em] text-azure">
+            Writing as M.B. Molepo
+          </p>
+
+          <div id="architect-bio" class="font-prose text-xl sm:text-2xl text-parchment/85 leading-relaxed space-y-4">
+            <p>Born and rooted in South Africa, Mamalema Brian Molepo is a dark speculative architect fascinated by the unknown, what humanity could evolve into, and the rawest, darkest emotions we rarely dare to name.</p>
+            <p>Refusing to imitate Earth’s history or traditional fantasy tropes, he forged <strong>Elyrius</strong>—a realm without race, governed entirely by Essence, duality, and consequence. With <em>Dualitas Rerum</em> as its foundation, his life’s work is an ambitious 100-novel universe published exclusively in written forms—PDF, Paperback, and Hardcover—because the voices of Elyrius are meant to whisper directly inside the reader’s own mind.</p>
+          </div>
+
+          <!-- Philosophy Pillars -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-xl bg-void border border-azure/25">
+              <h4 class="font-serif text-xs uppercase tracking-wider text-azure font-bold mb-1">Why No Audiobooks?</h4>
+              <p class="text-xs text-ash leading-relaxed">Elyrius is intimate psychological myth. Every cadence, lattice hum, and god-whisper belongs solely to the voice inside the reader's mind.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-void border border-stardust/25">
+              <h4 class="font-serif text-xs uppercase tracking-wider text-stardust font-bold mb-1">The 100-Novel Vision</h4>
+              <p class="text-xs text-ash leading-relaxed">A generational tapestry of 100 interconnected tomes spanning ancient blood-wards, cyber-essence lattices, and cosmic beasts.</p>
+            </div>
+          </div>
+
+          <!-- Social & Amazon Links -->
+          <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+            <a id="link-amazon-author" href="https://www.amazon.com/dp/B0FQVNKSHS" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-gradient-to-r from-stardust-dark to-stardust text-obsidian font-serif font-bold text-xs uppercase tracking-wider hover:brightness-110 transition flex items-center gap-2">
+              <i class="fa-brands fa-amazon text-base"></i> Amazon KDP Catalog
+            </a>
+            <a id="link-instagram" href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl bg-void hover:bg-sanctum border border-stardust/30 text-parchment hover:text-stardust flex items-center justify-center transition" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a id="link-tiktok" href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl bg-void hover:bg-sanctum border border-stardust/30 text-parchment hover:text-stardust flex items-center justify-center transition" aria-label="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a id="link-goodreads" href="https://goodreads.com" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl bg-void hover:bg-sanctum border border-stardust/30 text-parchment hover:text-stardust flex items-center justify-center transition" aria-label="Goodreads">
+              <i class="fa-brands fa-goodreads-g"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- SECTION 6: THE WHISPERING DISPATCH (NEWSLETTER RITUAL)                -->
+  <!-- ===================================================================== -->
+  <section id="dispatch" class="relative z-10 py-24 bg-gradient-to-b from-void to-obsidian">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="gothic-card rounded-3xl p-8 sm:p-14 text-center border border-stardust/40 relative overflow-hidden">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-azure/15 border border-azure/40 text-azure-light font-mono text-xs uppercase tracking-[0.25em] mb-4">
+          Inner Sanctum Transmission
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-parchment mb-4">
+          The Whispering Dispatch
+        </h2>
+        <p class="font-prose text-xl sm:text-2xl text-ash max-w-2xl mx-auto mb-8">
+          Bind your name to the lattice to receive <span class="text-stardust font-semibold">exclusive Elyrius lore fragments, early PDF dispatches, and release alerts</span> for <em>Bokamoso</em> and the 100-novel chronicle.
+        </p>
+
+        <form id="whisper-form" onsubmit="submitWhisperForm(event)" class="max-w-lg mx-auto flex flex-col sm:flex-row gap-3">
+          <input
+            type="email"
+            id="whisper-email"
+            required
+            placeholder="Inscribe your email address..."
+            class="flex-1 px-5 py-4 rounded-xl bg-obsidian border border-stardust/35 focus:border-azure focus:outline-none text-parchment placeholder-ash/50 text-sm font-mono"
+          />
+          <button type="submit" class="px-7 py-4 rounded-xl bg-gradient-to-r from-stardust-dark via-stardust to-amber-500 text-obsidian font-serif font-bold uppercase tracking-wider text-xs sm:text-sm hover:brightness-110 transition whitespace-nowrap">
+            Bind to Lattice
+          </button>
+        </form>
+
+        <div id="whisper-success" class="hidden mt-6 p-4 rounded-xl bg-azure/15 border border-azure/50 text-azure-light font-prose text-xl">
+          <i class="fa-solid fa-eye mr-2 text-stardust"></i> Your resonance is recorded. Watch the quiet hours for the first whisper from Elyrius.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative z-10 bg-obsidian border-t border-stardust/20 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+      <div>
+        <p class="font-serif text-sm text-parchment">&copy; <span id="year-now">2026</span> Mamalema Brian Molepo (M.B. Molepo). All Rights Reserved.</p>
+        <p class="font-mono text-[11px] text-ash/70 mt-1">Elyrius &bull; Dualitas Rerum &bull; Forged in South Africa.</p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-5 text-xs font-serif uppercase tracking-wider text-ash">
+        <a href="#trilogy" class="hover:text-stardust transition">Trilogy</a>
+        <a href="#archive-100" class="hover:text-stardust transition">100 Tomes</a>
+        <a href="#reliquary" class="hover:text-stardust transition">Reliquary</a>
+        <button onclick="openCustomizer()" class="text-stardust hover:underline">Upload Covers &amp; Export HTML</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- IMMERSIVE CHAPTER I CODEX READER MODAL (FULL UNABRIDGED CHAPTERS)     -->
+  <!-- ===================================================================== -->
+  <div id="chapter-modal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-2 sm:p-6">
+    <div class="bg-void border border-stardust/50 rounded-2xl max-w-4xl w-full h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Reader Top Bar -->
+      <div class="px-5 py-4 bg-obsidian border-b border-stardust/25 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2 overflow-x-auto">
+          <button onclick="openChapterReader(0)" id="reader-tab-0" class="reader-tab px-3 py-1.5 rounded-lg font-mono text-xs border border-stardust/40 text-stardust bg-stardust/10 whitespace-nowrap">Book I: Polarity Paradox</button>
+          <button onclick="openChapterReader(1)" id="reader-tab-1" class="reader-tab px-3 py-1.5 rounded-lg font-mono text-xs border border-slate-700 text-ash hover:text-parchment whitespace-nowrap">Book II: Godfall</button>
+          <button onclick="openChapterReader(2)" id="reader-tab-2" class="reader-tab px-3 py-1.5 rounded-lg font-mono text-xs border border-slate-700 text-ash hover:text-parchment whitespace-nowrap">Book III: The Polarity.exe</button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- Font Size Controls -->
+          <button onclick="adjustReaderFont(-2)" class="w-8 h-8 rounded-lg bg-sanctum border border-slate-700 text-parchment text-xs font-mono hover:border-stardust" title="Decrease Font">A-</button>
+          <button onclick="adjustReaderFont(2)" class="w-8 h-8 rounded-lg bg-sanctum border border-slate-700 text-parchment text-xs font-mono hover:border-stardust" title="Increase Font">A+</button>
+          <button onclick="closeChapterReader()" class="w-9 h-9 rounded-lg bg-crimson/20 hover:bg-crimson text-parchment border border-crimson/50 flex items-center justify-center ml-1">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Reader Scrollable Manuscript Body -->
+      <div id="reader-scroll-area" class="flex-1 overflow-y-auto px-6 sm:px-14 py-10 bg-gradient-to-b from-obsidian via-void to-obsidian">
+        <div class="max-w-2xl mx-auto">
+          <div class="text-center mb-10 pb-8 border-b border-stardust/25">
+            <span id="reader-series-badge" class="font-mono text-xs uppercase tracking-[0.3em] text-azure">DUALITAS RERUM &bull; BOOK ONE</span>
+            <h3 id="reader-book-title" class="font-display text-3xl sm:text-4xl font-bold text-parchment mt-2">The Polarity Paradox</h3>
+            <p class="font-serif text-sm uppercase tracking-[0.25em] text-stardust mt-2">Chapter I — Complete Opening</p>
+          </div>
+
+          <div id="reader-prose-content" class="codex-prose font-prose text-parchment/90 leading-relaxed" style="font-size: 21px;">
+            <!-- Full Chapter I injected here -->
+          </div>
+
+          <!-- End of Chapter Call to Action -->
+          <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-sanctum border border-stardust/40 text-center space-y-4">
+            <p class="font-prose italic text-xl text-stardust-light">
+              “The private road and the open road have become the same road. What happens next will decide the fate of the dual-blood... and the realms themselves.”
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              <a id="reader-amazon-btn" href="#" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-stardust-dark to-stardust text-obsidian font-serif font-bold text-xs uppercase tracking-wider hover:brightness-110 transition flex items-center justify-center gap-2">
+                <i class="fa-brands fa-amazon text-base"></i>
+                <span>Continue Reading on Amazon KDP</span>
+              </a>
+              <button id="reader-next-book-btn" onclick="openChapterReader(1)" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-obsidian border border-azure/40 text-azure-light font-serif text-xs uppercase tracking-wider hover:border-azure transition">
+                Next: Book II Chapter I &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- SANCTUM CUSTOMIZER & ONE-CLICK STANDALONE HTML EXPORTER DRAWER        -->
+  <!-- ===================================================================== -->
+  <div id="customizer-drawer" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex justify-end">
+    <div class="bg-void border-l border-stardust/40 w-full max-w-2xl h-full flex flex-col shadow-2xl">
+      
+      <div class="p-5 bg-obsidian border-b border-stardust/25 flex items-center justify-between">
+        <div>
+          <h3 class="font-serif text-lg font-bold text-stardust flex items-center gap-2">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Sanctum Image &amp; Content Forge
+          </h3>
+          <p class="text-xs text-ash font-mono mt-0.5">Upload your 4 covers, author photo &amp; logo, then export your ready HTML site.</p>
+        </div>
+        <button onclick="closeCustomizer()" class="w-9 h-9 rounded-lg bg-sanctum hover:bg-crimson text-parchment flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Customizer Tabs -->
+      <div class="flex border-b border-stardust/20 bg-obsidian text-xs font-mono uppercase overflow-x-auto">
+        <button onclick="switchCustTab('covers')" id="cust-tab-covers" class="cust-tab px-4 py-3 text-stardust border-b-2 border-stardust whitespace-nowrap">1. Book Covers</button>
+        <button onclick="switchCustTab('architect')" id="cust-tab-architect" class="cust-tab px-4 py-3 text-ash hover:text-parchment whitespace-nowrap">2. Portrait &amp; Logo</button>
+        <button onclick="switchCustTab('merch')" id="cust-tab-merch" class="cust-tab px-4 py-3 text-ash hover:text-parchment whitespace-nowrap">3. Reliquary Merch</button>
+      </div>
+
+      <!-- Customizer Body -->
+      <div class="flex-1 overflow-y-auto p-6 space-y-6 text-sm">
+        
+        <!-- TAB 1: UPLOAD BOOK COVERS -->
+        <div id="cust-panel-covers" class="cust-panel space-y-5">
+          <div class="p-4 rounded-xl bg-azure/10 border border-azure/30 text-xs text-azure-light font-mono">
+            <i class="fa-solid fa-circle-info mr-1.5"></i> Select your cover image files from your device below. They will embed directly into your site and stay saved when you click <strong>Export Website (.html)</strong>.
+          </div>
+
+          <div id="cust-books-container" class="space-y-4"></div>
+
+          <!-- Bokamoso Future Cover -->
+          <div class="p-4 rounded-xl bg-sanctum border border-azure/35 space-y-3">
+            <h4 class="font-serif font-bold text-azure-light">Future Installment: Stardust Essence — Bokamoso</h4>
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-ash mb-1">Upload Bokamoso Cover File</label>
+              <input type="file" accept="image/*" onchange="handleFileUpload(event, 'bokamosoCover')" class="text-xs text-ash file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-azure/20 file:text-azure-light" />
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: AUTHOR PORTRAIT, LOGO & SOCIALS -->
+        <div id="cust-panel-architect" class="cust-panel hidden space-y-4">
+          <div class="p-4 rounded-xl bg-sanctum border border-stardust/30 space-y-3">
+            <label class="block text-xs font-mono uppercase text-stardust">Upload Author Portrait (Mamalema Brian Molepo)</label>
+            <input type="file" accept="image/*" onchange="handleFileUpload(event, 'authorPortrait')" class="text-xs text-ash file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-stardust/20 file:text-stardust" />
+          </div>
+
+          <div class="p-4 rounded-xl bg-sanctum border border-stardust/30 space-y-3">
+            <label class="block text-xs font-mono uppercase text-stardust">Upload Custom Logo (Optional — replaces SVG sigil)</label>
+            <input type="file" accept="image/*" onchange="handleFileUpload(event, 'customLogo')" class="text-xs text-ash file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-stardust/20 file:text-stardust" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono uppercase text-stardust mb-1">Author Biography</label>
+            <textarea id="edit-author-bio" rows="5" oninput="syncAuthorEdits()" class="w-full p-3 rounded-xl bg-obsidian border border-stardust/30 text-parchment text-xs"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-ash mb-1">Amazon Author / Store URL</label>
+              <input type="url" id="edit-link-amazon" oninput="syncAuthorEdits()" class="w-full px-3 py-2 rounded-lg bg-obsidian border border-stardust/30 text-parchment text-xs" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-ash mb-1">Instagram URL</label>
+              <input type="url" id="edit-link-ig" oninput="syncAuthorEdits()" class="w-full px-3 py-2 rounded-lg bg-obsidian border border-stardust/30 text-parchment text-xs" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-ash mb-1">TikTok URL</label>
+              <input type="url" id="edit-link-tt" oninput="syncAuthorEdits()" class="w-full px-3 py-2 rounded-lg bg-obsidian border border-stardust/30 text-parchment text-xs" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-ash mb-1">Goodreads URL</label>
+              <input type="url" id="edit-link-gr" oninput="syncAuthorEdits()" class="w-full px-3 py-2 rounded-lg bg-obsidian border border-stardust/30 text-parchment text-xs" />
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: RELIQUARY MERCH & PDFS -->
+        <div id="cust-panel-merch" class="cust-panel hidden space-y-4">
+          <div id="cust-merch-container" class="space-y-4"></div>
+        </div>
+
+      </div>
+
+      <!-- Footer Export Bar -->
+      <div class="p-5 bg-obsidian border-t border-stardust/25 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <button onclick="resetSanctumData()" class="text-xs font-mono text-ash hover:text-crimson-light underline">
+          Reset Defaults
+        </button>
+        <button onclick="exportReadyWebsite()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-stardust-dark via-stardust to-amber-500 text-obsidian font-serif font-bold text-xs uppercase tracking-wider hover:brightness-110 transition shadow-xl flex items-center justify-center gap-2">
+          <i class="fa-solid fa-download"></i>
+          <span>Export Self-Contained Website (.html)</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT: ARTWORK, UNABRIDGED CHAPTERS, SERPENT ENGINE & EXPORTER   -->
+  <!-- ===================================================================== -->
+  <script>
+    // Bespoke SVG Cover Generators styled directly after M.B. Molepo's uploaded covers
+    function generateBookCoverSvg(type) {
+      if (type === 'book1') {
+        // Styled after The Polarity Paradox: Crimson moon halo, silver-haired essence warrior, obsidian citadel
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900">
+          <defs>
+            <radialGradient id="moon" cx="50%" cy="32%" r="36%">
+              <stop offset="0%" stop-color="#dc2626" stop-opacity="0.85"/>
+              <stop offset="65%" stop-color="#7f1d1d" stop-opacity="0.45"/>
+              <stop offset="100%" stop-color="#04060b" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1f0a0e"/>
+              <stop offset="50%" stop-color="#090d18"/>
+              <stop offset="100%" stop-color="#04060b"/>
+            </linearGradient>
+          </defs>
+          <rect width="600" height="900" fill="url(#bg1)"/>
+          <circle cx="300" cy="290" r="220" fill="url(#moon)"/>
+          <circle cx="300" cy="290" r="145" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-dasharray="10 6" stroke-opacity="0.75"/>
+          <circle cx="300" cy="290" r="160" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-opacity="0.6"/>
+          <!-- Citadel Spires -->
+          <polygon points="480,430 495,250 510,430" fill="#090d18" stroke="#f59e0b" stroke-opacity="0.4"/>
+          <polygon points="85,460 102,290 120,460" fill="#090d18" stroke="#dc2626" stroke-opacity="0.4"/>
+          <!-- Central Essence Core -->
+          <circle cx="300" cy="435" r="22" fill="#38bdf8" fill-opacity="0.25" stroke="#38bdf8" stroke-width="2.5"/>
+          <circle cx="300" cy="435" r="8" fill="#7dd3fc"/>
+          <text x="300" y="75" text-anchor="middle" fill="#f59e0b" font-family="Georgia, serif" font-size="22" letter-spacing="8">DUALITAS RERUM</text>
+          <text x="300" y="610" text-anchor="middle" fill="#f59e0b" font-family="Georgia, serif" font-size="30" letter-spacing="6">THE</text>
+          <text x="300" y="675" text-anchor="middle" fill="#ebe6dc" font-family="Georgia, serif" font-weight="bold" font-size="52" letter-spacing="4">POLARITY</text>
+          <text x="300" y="738" text-anchor="middle" fill="#ebe6dc" font-family="Georgia, serif" font-weight="bold" font-size="52" letter-spacing="4">PARADOX</text>
+          <line x1="140" y1="775" x2="460" y2="775" stroke="#f59e0b" stroke-opacity="0.6" stroke-width="1.5"/>
+          <text x="300" y="845" text-anchor="middle" fill="#f59e0b" font-family="Georgia, serif" font-size="30" letter-spacing="6">M.B. MOLEPO</text>
+        </svg>`;
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      }
+      if (type === 'book2') {
+        // Styled after Godfall: Twin blue & molten planets, lightning essence sphere
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900">
+          <defs>
+            <radialGradient id="bluePlanet" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="70%" stop-color="#0284c7"/>
+              <stop offset="100%" stop-color="#04060b" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="firePlanet" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#f59e0b"/>
+              <stop offset="65%" stop-color="#dc2626"/>
+              <stop offset="100%" stop-color="#04060b" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="600" height="900" fill="#050914"/>
+          <circle cx="135" cy="245" r="85" fill="url(#bluePlanet)" opacity="0.85"/>
+          <circle cx="465" cy="265" r="95" fill="url(#firePlanet)" opacity="0.85"/>
+          <!-- Lightning Orb -->
+          <circle cx="455" cy="495" r="52" fill="#38bdf8" fill-opacity="0.22" stroke="#7dd3fc" stroke-width="2.5"/>
+          <circle cx="455" cy="495" r="28" fill="#0284c7" stroke="#38bdf8" stroke-width="2"/>
+          <text x="300" y="72" text-anchor="middle" fill="#ebe6dc" font-family="Georgia, serif" font-size="21" letter-spacing="8">DUALITUS RERUM</text>
+          <text x="300" y="155" text-anchor="middle" fill="#7dd3fc" font-family="Georgia, serif" font-weight="bold" font-size="76" letter-spacing="5">GODFALL</text>
+          <line x1="140" y1="785" x2="460" y2="785" stroke="#38bdf8" stroke-opacity="0.6" stroke-width="1.5"/>
+          <text x="300" y="845" text-anchor="middle" fill="#ebe6dc" font-family="Georgia, serif" font-size="30" letter-spacing="6">M.B. MOLEPO</text>
+        </svg>`;
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      }
+      if (type === 'book3') {
+        // Styled after The Polarity.exe: Neon cyan & magenta cyber-lattice futuristic Elyrius
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900">
+          <rect width="600" height="900" fill="#040712"/>
+          <path d="M80,150 Q300,50 520,150" fill="none" stroke="#38bdf8" stroke-width="4" stroke-opacity="0.8"/>
+          <circle cx="300" cy="360" r="165" fill="none" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="16 8"/>
+          <circle cx="300" cy="360" r="135" fill="none" stroke="#38bdf8" stroke-width="2"/>
+          <text x="300" y="112" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-weight="bold" font-size="26" letter-spacing="6">DUALITAS RERUM</text>
+          <rect x="35" y="455" width="530" height="84" rx="10" fill="#04060b" fill-opacity="0.88" stroke="#38bdf8" stroke-width="2"/>
+          <text x="300" y="512" text-anchor="middle" fill="#ebe6dc" font-family="Georgia, serif" font-weight="bold" font-size="40" letter-spacing="2">The Polarity<tspan fill="#38bdf8" font-family="monospace">.exe</tspan></text>
+          <text x="300" y="845" text-anchor="middle" fill="#7dd3fc" font-family="Georgia, serif" font-size="30" letter-spacing="6">M.B. MOLEPO</text>
+        </svg>`;
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      }
+      // Bokamoso Future Installment Cover
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="900" viewBox="0 0 600 900">
+        <defs>
+          <linearGradient id="bokBg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#07192e"/>
+            <stop offset="55%" stop-color="#0b1d26"/>
+            <stop offset="100%" stop-color="#04060b"/>
+          </linearGradient>
+        </defs>
+        <rect width="600" height="900" fill="url(#bokBg)"/>
+        <!-- Coiling Celestial Serpent Silhouette -->
+        <path d="M120,420 C120,210 490,190 480,350 C470,480 170,440 160,560" fill="none" stroke="#38bdf8" stroke-width="28" stroke-linecap="round" stroke-opacity="0.45"/>
+        <path d="M120,420 C120,210 490,190 480,350 C470,480 170,440 160,560" fill="none" stroke="#f59e0b" stroke-width="3" stroke-dasharray="12 8"/>
+        <!-- Golden Essence Heartburst -->
+        <circle cx="300" cy="540" r="45" fill="#f59e0b" fill-opacity="0.25" stroke="#f59e0b" stroke-width="2"/>
+        <text x="300" y="65" text-anchor="middle" fill="#fde68a" font-family="Georgia, serif" font-size="20" letter-spacing="6">STARDUST ESSENCE</text>
+        <text x="300" y="142" text-anchor="middle" fill="#f59e0b" font-family="Georgia, serif" font-weight="bold" font-size="60" letter-spacing="4">BOKAMOSO</text>
+        <text x="300" y="845" text-anchor="middle" fill="#f59e0b" font-family="Georgia, serif" font-size="30" letter-spacing="6">M.B. MOLEPO</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
+    function generateAuthorPlaceholderSvg() {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
+        <rect width="600" height="750" fill="#090d18"/>
+        <rect x="24" y="24" width="552" height="702" fill="none" stroke="#f59e0b" stroke-opacity="0.4" stroke-width="2"/>
+        <circle cx="300" cy="290" r="110" fill="#0e1424" stroke="#38bdf8" stroke-width="2"/>
+        <circle cx="300" cy="265" r="42" fill="none" stroke="#f59e0b" stroke-width="2"/>
+        <path d="M225,375 C225,325 375,325 375,375" fill="none" stroke="#f59e0b" stroke-width="2"/>
+        <text x="300" y="485" text-anchor="middle" fill="#ebe6dc" font-family="Georgia, serif" font-weight="bold" font-size="24" letter-spacing="3">MAMALEMA BRIAN MOLEPO</text>
+        <text x="300" y="525" text-anchor="middle" fill="#38bdf8" font-family="monospace" font-size="16" letter-spacing="4">M.B. MOLEPO</text>
+        <text x="300" y="610" text-anchor="middle" fill="#f59e0b" font-family="monospace" font-size="13">Click "Upload Art &amp; Edit" to embed your photo</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
+    function generateRelicSvg(title, tag, color) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+        <rect width="600" height="600" fill="#060913"/>
+        <rect x="22" y="22" width="556" height="556" fill="none" stroke="${color}" stroke-opacity="0.35" stroke-width="2"/>
+        <circle cx="300" cy="250" r="105" fill="none" stroke="${color}" stroke-width="2" stroke-dasharray="8 6"/>
+        <polygon points="300,160 335,250 300,340 265,250" fill="${color}" fill-opacity="0.16" stroke="${color}" stroke-width="2"/>
+        <text x="300" y="425" text-anchor="middle" fill="${color}" font-family="monospace" font-size="15" letter-spacing="4">${tag.toUpperCase()}</text>
+        <text x="300" y="470" text-anchor="middle" fill="#ebe6dc" font-family="Georgia, serif" font-weight="bold" font-size="24">${title}</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
+    // Complete Unabridged Chapter I Manuscripts Extracted From M.B. Molepo's PDFs
+    const CHAPTER_1_POLARITY_PARADOX = `Young Koriyx sat alone on the high ridge above Viandar, legs dangling over the edge of the stone outcrop. The sun was sinking, turning the sky into a slow burn of copper and deep violet. Far below, the iron-wood forests stretched in dark, petrified waves, their branches catching the last light like black glass. In the distance, the tallest spires of the Radiant cities still glowed faintly on the horizon, thin needles of crystal and stone that caught the dying sun and threw it back in fractured beams.
+
+He watched the light change and felt the usual quiet pressure under his ribs—the second current that never fully slept. His skin drank the evening cool. Beneath the surface, the faint geometric lines hummed in soft pulses of blue-white, answering something in the air he still didn't understand. Long ears twitched at every shift of the mountain wind. Dark hair fell across his forehead, the tips flickering with faint electric blue whenever the pressure inside him rose. His eyes, almost too bright for a child's face, stayed fixed on the horizon.
+
+The loose dark-grey tunic shifted with the breeze, revealing the faint glow along his arms whenever he moved. Scuffed leather boots hung over the edge of the stone.
+
+The air itself felt alive. Tiny threads of atmospheric essence drifted past like luminous dust, catching the sunset and glowing for a heartbeat before fading. Koriyx reached out once, slow, and let one of the threads brush his fingertips. It left a brief warmth and a soft crackle against his skin.
+
+"Koriyx!"
+
+His mother's voice carried clearly up the slope. Lysandra stood at the edge of the settlement path, one hand raised against the fading light. Even from here he could see the worry in the set of her shoulders.
+
+"Come down before the dark settles. You know better."
+
+He stayed a moment longer, watching the last copper edge of the sun slip behind the distant peaks. The sky above was already beginning to gather the first pale static charges that would later become the night auroras. The world felt wide and strange and beautiful, and for a few heartbeats he belonged only to it.
+
+Then he pushed himself up, brushed the stone dust from his hands, and started down the path toward home.
+
+Koriyx followed the narrow path down the ridge, stone dust still clinging to his palms. The settlement lights were beginning to glow below—soft amber orbs hanging from iron-wood posts. The air had cooled, and the first thin threads of night essence drifted higher, pale and restless.
+
+Halfway down he stopped.
+
+Liriana was waiting at the bend where the path widened, exactly where she always waited when she knew he had stayed out too long. She stood with one hand resting lightly on the low stone wall. Even at this distance, she looked different from everyone else in Viandar. A faint stardust shimmer lived beneath her skin, as if some of the night sky had settled there. Moonlit-silver hair fell in a long cascade past her shoulders, so pale it seemed to gather the remaining light and turn it softer. Her ears tilted slightly the moment she saw him, the way they always did before he even spoke. The pale fabric of her tunic moved lightly in the evening air.
+
+When her eyes found his, the restless pressure under Koriyx's ribs eased without effort. It always did. The second current quieted in her presence, as though something in her refused to let it rise.
+
+She didn't scold him. She only smiled, small and knowing, and held out her hand.
+
+"You're late again," she said. Her voice was soft, but there was a quiet stubbornness underneath it that never quite left. "Your mother will worry."
+
+Koriyx took her hand. Her fingers were cool against his. They walked the rest of the way in comfortable silence. The settlement lights grew brighter. Behind them, the sky continued its slow change from violet to the deep, charged dark of true night. Koriyx glanced sideways at her once and felt the same steady calm settle over him that he only ever found when she was near.
+
+They settled just as the last light left the sky. The path-lights glowed steadier now, casting long soft shadows across the stone houses. Voices drifted from open doorways—a woman calling a child in, the low murmur of two men talking near a workbench, the sharp ring of a hammer on metal from somewhere deeper in the lanes. A pair of essence-touched goats shifted and bleated softly in a small enclosure. Night-insects had begun their thin, steady chorus, and the wind moved through the iron-wood posts with a dry, whispering sound.
+
+Liriana stopped at the low wall that marked the edge of Koriyx's home.
+
+"Go," she said, giving his hand a final squeeze. "I'll see you tomorrow."
+
+He watched her walk away until the silver of her hair disappeared between the houses. Only then did he step inside.
+
+The main room was warm. A low fire burned in the open hearth, and the scent of cooked root vegetables and ironwood smoke filled the air. Somewhere outside, a child laughed, the sound quickly muffled by a closing door.
+
+His father, Jozen, sat at the table cleaning a long blade. He was broader than most men in Viandar, solid through the shoulders, with sharper, more angular features than his son. His dark hair was kept short and practical. The lines beneath his skin stayed mostly dark and quiet. His eyes were a cooler amber-gold, steady and hard to read. The heavy tunic and reinforced leather vest made him look even more solid in the firelight.
+
+Lysandra looked up from the hearth the moment the door closed. She was smaller, her features softer than her husband's, her dark hair threaded with early silver and gathered in a thick practical braid over one shoulder. The lines along her arms and collarbones glowed a gentle, constant blue. Her eyes were a warm gold, and right now they moved quickly from Koriyx's face to the faint light still lingering under his skin. The deep blue-grey of her tunic and simple woven skirt suited the quiet work of the evening.
+
+Something tight eased in her expression, but not completely.
+
+"You're late," she said, though her voice held no real anger. "Come. Sit."
+
+Koriyx took his usual place near the fire. Outside, the night wind moved through the settlement, carrying the soft crackle of rising atmospheric essence and the distant, ordinary sounds of people finishing their day. Inside, the only sounds were the fire and the quiet scrape of Jozen's cloth against the blade.
+
+After a while, Lysandra came and sat beside him on the low bench. She did not speak at once. She rested one hand over his, her thumb brushing the back of his knuckles the way she had when he was smaller.
+
+"You felt it again today," she said quietly. Not a question.
+
+Koriyx nodded.
+
+Jozen's hands stilled on the blade. He did not look up, but his voice came low and even. "The lines on your arms are brighter than they were last month." He set the cloth down. "It's growing, isn't it?"
+
+Koriyx met his father's eyes. Jozen's face was hard to read—stone-cut and calm—but there was something tight around his mouth that had not been there before.
+
+"I can still hold it," Koriyx said.
+
+Jozen studied him for a long moment. Then he gave a single, slow nod. "For now." He picked up the blade again. "Just remember—holding it is not the same as mastering it. One day the choice won't be yours to make. When that day comes, I expect you to be still standing."
+
+The words were not unkind, but they carried weight. Lysandra glanced at her husband, then back to Koriyx. When she spoke again, her voice had the soft, measured rhythm she used only when telling the old stories.
+
+"Long before the iron-woods grew and the glass spires rose, there were only two great forces," she began. "One was the Prime Synergy—bright, ordered, unyielding. The light of the high sun given shape. The other was the Primal Entropic—deep, shifting, endless. The dark between the stars given hunger. They were never meant to meet. But they did. And from their clash the world was born."
+
+She glanced toward the shuttered window, as if the night itself were listening.
+
+"Most of us carry only an echo of one force or the other. The light settles in some bloodlines. The void settles in others. That is the balance the world has known for generations. But every so often a child is born who carries both."
+
+Her hand tightened slightly over his.
+
+"Those children feel a second current under their heart. Something bright that does not belong in the shadowed lands. Something that answers neither fully to the light nor to the dark. The old stories say such a dual lineage is dangerous—not because it is evil, but because it is unfinished. The world does not know what to do with it. And some would rather destroy what they cannot control."
+
+She fell quiet. The fire popped softly. Koriyx stared into the flames. The pressure under his ribs stirred once, then settled again, as if it had heard its own name spoken for the first time.
+
+Lysandra brushed a strand of dark hair from his forehead. Her voice dropped even lower. "You must learn to hold it gently, my son. Not crush it. Not free it. Hold it. Until the day you understand what it truly is."
+
+Outside, the first pale auroras began to gather above the ridge. Inside, they sat in the warm silence of the hearth, and no one spoke.
+
+The years that followed passed without ceremony.
+
+Koriyx grew taller. The lines under his skin became more defined. The electric tips of his hair brightened whenever the pressure inside him stirred. Liriana's silver hair reached nearly to her waist. The shimmer beneath her skin deepened. They still walked the iron-wood paths together, but the silence between them had changed. It was no longer the easy quiet of children. It carried weight.
+
+One late afternoon they stood in the same high glade where the luminescent flowers grew thickest. The air hummed with ambient essence. Essence-shrikes circled high above, their wings scattering brief sparks of light through the canopy.
+
+Koriyx leaned against a petrified trunk, arms folded, jaw tight. His charcoal tunic was rolled to the elbows, leaving the restless lines on his forearms exposed. The obsidian dagger rested at his hip. The pressure under his ribs had been rising for days. It no longer waited for strong emotion. Sometimes it simply woke on its own, bright and restless, pushing against the walls he had built around it.
+
+Liriana watched him. She always knew. The pale fabric of her tunic shifted with the breeze. She stepped closer and rested her forehead against his, the same way she had when they were twelve. Her eyes stayed open, steady.
+
+"It's getting stronger," she said softly.
+
+"I know."
+
+"Does it hurt?"
+
+"Not yet. But it feels like it's waiting for something."
+
+Her fingers found the edge of his sleeve, then the warm skin of his wrist. The contact grounded him, as it always had. The pressure eased, but only a little. It no longer fully obeyed her presence the way it once did.
+
+"I'm not afraid of it," she said.
+
+Koriyx's voice came quieter. "You should be."
+
+She pulled back just enough to look at him properly. There was no fear in her face—only the same quiet stubbornness that had always lived behind her gentleness.
+
+"I've watched you carry this since we were children. I've felt it calm when I was near. If it ever breaks free, I want to be the one standing beside you. Not behind you. Not away from you."
+
+He stared at her. For a moment he wanted to tell her everything—the nights he woke with light burning under his skin, the way the air itself sometimes answered him, the growing certainty that something out in the wider Void Reach had begun to notice.
+
+Instead he only said, "I don't want to lose you."
+
+Liriana's expression softened. She reached up and touched the side of his face, her thumb brushing just beneath his eye.
+
+"Then don't push me away when the day comes."
+
+A cold wind moved through the glade without warning. The luminescent flowers nearest the tree line dimmed. The essence-shrikes above fell suddenly silent. Koriyx's ears twitched. The pressure inside him flared hard, sharp and bright, as if answering a presence that should not have been there. Liriana felt it too. Her hand tightened on his wrist.
+
+They both turned toward the deeper shadows between the iron-woods. The cold thickened.
+
+From the deeper shadows between the iron-woods, something peeled itself free of the gloom. A woman stepped into the filtered light. She was tall and sharply built, her frame lean like something carved from black glass. Her skin was the colour of old ash, marked with thin, branching lines of pure void that seemed to shift when she moved. Long black hair fell in straight, heavy sheets past her shoulders, the ends fading into actual shadow so it was impossible to tell where the hair ended, and the dark began. Her eyes were a dull, poisoned green—flat and depthless, like deep water under ice. Close-fitted armour of matte black plates over dark cloth drank the light rather than reflecting it. When she smiled, the expression never reached those eyes.
+
+"Not quite yet," she said, voice low and almost amused. "A new puppet dances."
+
+Koriyx moved first. The obsidian dagger was already in his hand as he stepped in front of Liriana. The pressure under his heart surged hard, bright and violent, answering the threat before he could stop it.
+
+The woman flicked both wrists. Thin, writhing strands of dark energy erupted from her palms and cracked across the clearing. They struck Koriyx mid-step. The tendrils wrapped around his arms, chest, and legs at impossible speed, dragging him to his knees. The cold of them sank straight into bone. He slashed once, twice, severing strands, but each cut only made the remaining chains tighten harder, biting deeper.
+
+She walked forward slowly, almost leisurely. "Look at you," she murmured. "The dual lineage. The broken vessel everyone whispers about. And still so weak." Her eyes flicked to Liriana. "Is this what you protect? This soft little thing?"
+
+"Don't touch her," Koriyx snarled through gritted teeth.
+
+She smiled. The chains constricted again. Koriyx's breath left him in a ragged gasp. Pain flared white behind his eyes.
+
+"Or what?" she asked, almost gently. "You'll stop me? With what? That flickering light you keep locked inside like a frightened child?" She crouched slightly so her face was level with his. "I've watched you for some time. Every time the power rises, you crush it. Every time she looks at you, you hide it. How long did you think that would last?"
+
+Liriana tried to move toward him. The oppressive aura around the woman held her in place like invisible hands. "Koriyx—" she called, voice tight with fear.
+
+The woman's gaze never left him. "She still believes in you. How sweet. Shall I show her what you really are? Or shall I take her and leave you here, chained and useless, knowing you failed?"
+
+Something broke in Koriyx's chest—not the power yet, but the last thread of restraint. Tears burned at the corners of his eyes, half from pain, half from the raw terror of seeing Liriana trapped and beyond his reach. His voice came out low and shaking.
+
+"I said don't touch her."
+
+She leaned closer. Her next words were soft, almost kind, and infinitely cruel. "You can't save her. You never could. You are nothing but a cracked vessel waiting to shatter. And when you do, I will be the one who collects the pieces."
+
+The chains tightened one final time. Koriyx's vision darkened at the edges. Through the pain he still saw Liriana's face—her eyes wide, her silver hair dull under the unnatural cold, her hand reaching uselessly toward him.
+
+The dual force answered that sight with pure, unreasoning need. It broke free.
+
+A wave of white-hot, liquid light erupted from his core. The Vessel-Binding Chains shattered into smoke. Blue-white fire raced down his arms and crackled across the lines beneath his skin. His eyes burned with a radiance that made the air itself flinch.
+
+The woman staggered back, genuine shock breaking across her face. "This is... impossible."
+
+For a single heartbeat, the shock held. Then, even as the uncontrolled blast tore outward, a slow, sinister smile curved her mouth—cold, fascinated, and utterly without fear. She was still smiling when the light swallowed her and hurled her into the shadows, where she dissolved with a fading hiss.
+
+The same uncontrolled wave struck Liriana full force and threw her to the earth.
+
+The light vanished as suddenly as it had come. Koriyx collapsed forward onto his hands and knees, gasping in the scorched grass. The glade smelled of ozone and burned moss.
+
+"Liriana—"
+
+He crawled to her. Lifted her head. The shimmer under her skin was already fading. Her skin was growing cold beneath his hands.
+
+"I'm sorry," he choked. "Please."
+
+Tears cut clean tracks down his face, following the still-glowing lines of his circuits. Liriana managed a faint smile. Her eyes found his one last time. With the final thread of her strength, she reached up and pressed her palm flat against his chest, directly over his heart.
+
+Something passed between them. It was not light, nor words. A thin, warm current of her essence slipped from her into him—quiet, incomplete, and permanent. It settled deep beneath the second current, like a second pulse that was not entirely his own.
+
+"I'm still here," she whispered. The words were barely breath. "In some way... I'm still here."
+
+Her eyes dimmed. The light inside them went out. Her hand fell limp against his chest.
+
+Koriyx stayed there. He did not move. He did not speak. He only held her, forehead pressed to her still hand. The pressure inside him had gone silent, as if even it understood what it had done. Beneath it, the new thread of her essence remained—faint, steady, and already beginning to weave itself into him.
+
+The glade around them was scorched and quiet. Essence-shrikes had fled. The luminescent flowers nearest them had gone dark. Time passed. He did not know how long. At some point he realised he was rocking slightly, the way he had once seen his mother rock him when he was small and afraid. His voice, when it finally came, was barely a sound.
+
+"I didn't mean to... I didn't mean to."
+
+He stayed until the light in the sky began to change, until the first cool edge of evening touched the burned grass. Only then did he carefully lay her down. He smoothed her silver hair back from her face with shaking fingers, then closed her eyes with his thumb. He could not leave her alone in the open. He knew that much.
+
+By the time he reached the edge of the settlement, the sky had turned the deep violet of true dusk. He did not return home. He carried her to the small stone house near the lower path-lights, the one with the blue-painted door she had always left unlatched for him.
+
+The door opened before he could knock. Her adoptive mother, Sera, stood there. For a moment she only stared. Then the understanding reached her eyes and her face changed in a way Koriyx would never forget. Behind her, Liriana's adoptive father, Toren, rose from the table so quickly the chair toppled.
+
+Sera made a sound that was not quite a cry. She stepped forward and took her daughter from Koriyx's arms. She sank to the floor with Liriana against her chest, smoothing the silver hair back from the still face the same way she must have done a thousand times when the girl was small. Toren stood frozen in the doorway. His hands hung useless at his sides. When he finally spoke, the words were rough and broken.
+
+"What happened?"
+
+Koriyx could not answer at first. The pressure inside him stayed silent. The new thread of Liriana's essence rested quietly and warm beneath his heart, as if it too was listening.
+
+Sera did not look up. Her voice came low, almost to herself. "I found her in the iron-woods when she was no taller than my hip. Alone. No family mark. No name. Just silver hair and those eyes looking up at me like she already knew I would take her home." Her thumb brushed once across Liriana's cheek. "I chose her. Every day after that I chose her."
+
+Toren's hand settled heavily on his wife's shoulder. He did not try to stop her tears. He only looked at Koriyx, and the look held no accusation yet—only the beginning of a grief that would not leave.
+
+Koriyx knelt. He could not meet their eyes for long. "I'm sorry," he said. The words felt small and useless. "It was me... I couldn't hold it."
+
+Sera finally raised her head. Her eyes were wet, but steady. "She loved you," she said simply. She returned her attention to her daughter and did not speak again.
+
+Outside, the first night-insects had begun their thin chorus. Somewhere in the settlement a door closed. The ordinary sounds of Viandar continued, unaware. Koriyx stayed on his knees until Toren finally touched his shoulder and told him, quietly, that he should go. He left them there with her.
+
+Word of the glade's destruction reached the local council before night had fully settled. Fearing the forces now tracking Koriyx's dual signature, they ordered the family into immediate exile.
+
+On the outskirts of the settlement, as the travel caravan prepared to leave, Koriyx stood alone for a moment and looked back toward the iron-wood paths. He could still feel the faint second pulse under his ribs. It did not speak. It did not guide. It simply remained.
+
+He closed his hand over his chest, over the place where her palm had rested.
+
+"I will avenge you, Liri," he whispered.
+
+The caravan rolled forward into the foggy mountain passes. Against his heartbeat, the remnant of her essence answered with a single, microscopic spark of warmth—silent, unnoticed, and waiting.`;
+
+    const CHAPTER_1_GODFALL = `The lower wards always smelled of wet stone and old essence after midnight.
+
+Rain drifted through the blue glow of the essence-lamps in fine, steady curtains. Koriyx stood under the broken awning of a shuttered transit hub, his dark coat heavy with water. The weapon rested against his ribs, quiet for now. Across the narrow street, two bodies lay where the cameras did not reach.
+
+Nira leaned against the wall beside him in a long charcoal coat and black high-collared top, rain passing through her without darkening the fabric. Her grey eyes watched the corpses with lazy interest.
+
+You're staring like the dead are about to get up and complain about the weather, she said.
+
+"They might."
+
+Cheerful. I liked you better when you only brooded about the living.
+
+Koriyx did not answer. The iron marks on both bodies still held a faint, wrong heat. The man and the woman lay naked on the wet stone, blue skin already greying, their clothes nowhere in sight. Essence around the wounds felt coiled. Waiting.
+
+Lucina's late, Nira observed. Usually she's the one already here judging the lighting.
+
+"She'll come."
+
+Or she's decided you're dramatic enough without her.
+
+A low sound rolled through the street—not thunder. The essence-lamps flickered once, hard. The man's fingers twitched.
+
+Nira's voice lost the dry edge. Koriyx—
+
+The dead man surged upright with a wet, tearing noise. His eyes opened on a dull black light. The iron token in his chest flared. He came forward in a blind, powerful rush, mouth opening too wide.
+
+Koriyx's weapon was already in his hand. Light-cored rounds slammed into the risen corpse and staggered it, but the thing kept coming. Behind it, the woman's body arched off the wet stone with a sound like bone remembering how to be cruel.
+
+Her transformation was worse. Black essence tore from the mark in her chest and spread across her back in wet, spreading wings that shed droplets of cold light. When she lifted her head, her eyes burned a deep, hungry crimson. She rose off the ground as if the air itself had decided to obey her. The rain bent away from her.
+
+Her voice carried across the street: "Koriyx viae dualis. Lucina umbrae raptae. Ianuae apertae sunt. Aetas deorum in carne et cinere finit." (Koriyx of the dual road. Lucina of the stolen shadow. The doors are open. The age of gods ends in meat and ash.)
+
+She folded her wings and dropped toward him like a spear. Koriyx fired. The shots hit. She barely slowed. The risen man crashed into him from the side and drove them both through the glass front of a parked essence courier. Alarms shrieked. Metal screamed. People on the far sidewalk started shouting and running, phones already raised.
+
+The winged woman landed on the roof of the courier and ripped it open like soft fruit. Her smile was the worst part. She spoke again, voice bright with malice: "Parvus lator lucis. Reginae mortem dedisti. Nunc regnum suum te devorabit." (Little Light-carrier. You gave the queen her death. Now her kingdom will devour you.)
+
+The name of the queen hit harder than claws. For a fraction of a second, the centuries folded in on themselves, and Koriyx felt the old weight settle across his shoulders again. Then training closed over the moment, and he kept moving.
+
+A second presence cut across the chaos—calm, cold, and absolute. Silver-white light detonated at the mouth of the street.
+
+Lucina came with the storm. Her charcoal coat flared hard behind her as she strode into the rain, essence already braided around both arms in tight, lethal bands. Molten gold eyes locked on the winged undead. She did not slow down. She hit the creature mid-lunge with a concentrated blast that smashed it through the front of the transit hub in an explosion of glass, stone, and screaming metal.
+
+The building's upper facade peeled outward and collapsed into the street in a roar of dust and sparking essence-lines. People scattered, some still filming, some just running. A delivery van swerved, clipped a charging post, and rolled.
+
+Lucina landed in the rubble without looking at it. Her gaze stayed on the winged woman already rising from the wreckage, black wings shedding dust and black light.
+
+"You talk too much," Lucina said, and went at her.
+
+What followed was not a clean fight. Koriyx tore free of the first undead, put three more light-cored rounds through its token, and watched the corpse finally drop. Then he turned into the larger storm. The winged woman was fast—faster than anything that had climbed out of a mark so far. She spoke in between vicious bursts of strikes: "Sanguis vetus. Debita vetera. Messis deorum venit." (Old blood. Old debts. The harvest of gods is coming.)
+
+Every time she opened her mouth, the rain around her froze into needles.
+
+Lucina met her in the air and on the ground, force and shadow cutting against black wings and crimson eyes. Koriyx supported her with precise, punishing fire and short bursts of raw light whenever the creature tried to pin her. A second-storey walkway tore free and crashed down. An essence-lamp exploded in a fountain of blue sparks. The street itself began to feel too small for the violence inside it. Somewhere, a man kept screaming for people to run while he filmed over his shoulder.
+
+The winged undead slammed Koriyx through a storefront and into a display of shattered communicators. Glass buried itself in his coat and the skin beneath. He rolled, came up firing, and saw Lucina catch a full wing strike across her shoulder that spun her hard into a support pillar. Concrete cracked. Blood hit the rain. Both of them were breathing harder now. The creature was not tiring at the same rate.
+
+Nira's voice cut through the roar, sharp and close. The token in her chest is still the hinge. Break it or she keeps getting up.
+
+Koriyx and Lucina moved at the same time. Lucina drove the creature down into the street with a brutal spike of force. Koriyx closed the distance, jammed the muzzle of the weapon against the flaring iron mark between the undead woman's breasts, and poured light into it until the token shattered in a scream of cold black essence.
+
+The wings folded wrong. The crimson light in her eyes went out. She dropped.
+
+Silence crashed back into the street in pieces. Rain hissed on hot metal and broken essence-lines. The front of the transit hub was a collapsed ruin. Two vehicles burned. People stood at a distance behind anything solid, phones still raised, blue skin ashen with shock. Authority sirens were already rising from three directions. In the distance, residual drones turned toward the destruction. By morning, the recordings would be everywhere.
+
+Lucina straightened slowly, one hand pressed to the bleeding split in her shoulder. Essence knitted the worst of it, but slower than it should have. She looked at the two ruined corpses, then at the dozens of recording lights still watching them from the dark.
+
+Koriyx wiped blood and rain from his eyes. The weapon was hot in his hand. The queen's name still lingered in the air like a second kind of smoke.
+
+Nira stood between them, rain passing through her, expression almost impressed. Well, she said. That's one way to announce you're back in town.
+
+Lucina's golden eyes flicked to the approaching sirens, then to Koriyx. "We're done here."
+
+"Yes."
+
+They vanished into the deeper grid-shadow of the lower wards before the first authority units sealed the street, leaving behind wreckage, recordings, and the clear, public proof that the dead had grown wings and spoken the names of gods.
+
+The doors were open. And the city had just watched them bleed.`;
+
+    const CHAPTER_1_POLARITY_EXE = `The place had no name worth remembering.
+
+It sat under a mid-ward transit spur where essence-lamps had been cheap for a decade, and the neon worked in three colours: sick green, burnt magenta, and a blue that made skin look dead. The air was smoke and residual solvent and the sweet-chemical edge of watered alcohol. Music pressed against the skull without melody. People came here to stop being people for a few hours. Koriyx came here because the alternative was the apartment, and the apartment still held the shape of a letter.
+
+He was fifty-something and looked it.
+
+Multi-coloured scars crossed the back of one hand where the glass in front of him did not quite hide them—violet, gold, and pale blue. The lattice at the base of his skull hummed its low continuous note, the sound of a system that had outlived the reasons it was installed. His coat was residual-weave, once decent, now mapped with old burns and the kind of wear that said he did not replace things until they failed. Smoke curled from the essence-cig between his fingers. The drink in front of him was not his first. When he shifted on the stool, the residual ache in his bad knee reported for duty; when he reached for the glass, a fine tremor rode the tendons. Nothing elevated held those failures shut anymore.
+
+Nira stood at the edge of the lattice field, cybernetic panels catching the bad neon in thin luminous edges. Charcoal hair. Grey eyes. Only he could see her. The rest of the room saw a man alone at the end of the bar, talking to no one, which was common enough that no one cared.
+
+You are behind on the lattice upkeep, she said. No warmth. No performance. Third notice. After the fourth, they start remote throttling. After the fifth, they schedule extraction whether you consent or not.
+
+Koriyx took a pull of the drink. It burned like something that had never been near a real still. "I know."
+
+Knowing is not paying.
+
+"I know that too."
+
+A debt board flickered on the sticky surface of the bar—personal residual ledger, public enough that anyone with a basic interface could see the red. Clinic arrears. Node fines from a maintenance job that had gone wrong two months back. An informal marker from a lender who did not use grid channels, the kind that collected in person and did not send fourth notices. None of it was large enough to destroy a life in one stroke. All of it together was a slow drowning. He had stopped counting the exact numbers on nights like this. The smoke helped. The alcohol helped more. Pride had stopped helping years ago.
+
+Around him the club did what it always did. A woman laughed too loud at a table that smelled of ozone and sweat. Someone argued with a vending node that had stopped accepting their credit. Near the door, a pair of off-shift grid techs compared lattice firmware versions like other people compared scars. Futuristic Elyrius, mid-ward edition: neon, debt, and the quiet agreement not to ask what anyone had been before the pretence became the only story that paid.
+
+Nira's projection did not sit. She never sat in places like this. You are not mourning, she said. You are composting. There is a difference.
+
+He almost smiled. It did not reach the rest of his face. "You have a better word for it?"
+
+Yes. But you are not ready to hear it while you are still choosing the mud.
+
+The essence-cig burned down to the filter. He crushed it in the tray and did not light another immediately. Outside, through the grimy residual glass, a transit spine hummed as a night carriage passed. Essence-lightning walked a distant cloud in a thin white seam and found nothing worth grounding for. The city ticked on in its pretence. Drones held standard routes. Enforcement arms did not waste units on men who only owed money and quiet.
+
+Koriyx finished the drink. His hands had a slight tremor when he set the glass down. Age. Alcohol. Old damage that elevated forms had once held shut, and mortality had collected with interest. He flexed the scarred hand once, watched the lines catch the neon, and let it fall still.
+
+Last carriage to your block leaves in eleven minutes, Nira said. Or you can stay and add another marker to the ledger. I will still be here either way. That is not a comfort. It is a fact.
+
+He stood. The room tilted a fraction and then corrected. He was not young. He was not sober. He was not a god. He was a man in a bad coat walking toward a door that led to a wet street and a night that still owed him nothing.
+
+Behind him, the debt board updated with a soft residual chime; he did not turn to read. Outside, the mid-ward air was colder than the club had any right to make it feel. Smoke and alcohol left him in a thin, visible ghost. Somewhere above the transit spur, essence-lamps held their tired cycle. Somewhere in the lattice, Nira waited without patience and without pity.
+
+Koriyx stepped into the street.
+
+The street outside the club was mostly empty. Night-cycle essence-lamps threw thin pools of light across wet residual stone. A drone held a standard hover two blocks up, optics idle. Somewhere a transit carriage sighed along the spur and was gone. Koriyx walked with the careful straight line of a man who knew he was not sober and refused to look like it. The lattice hummed at the base of his skull. Nira matched his pace in the projection field, cybernetic edges dim under the open air.
+
+Left at the service cut, she said. Fewer cameras. Your block is—
+
+She stopped. Not paused. Stopped.
+
+Koriyx felt it a half-second later as a change in the air pressure, the way the mid-ward noise dropped into a held breath. Four figures stepped out of the blind angle where the club's rear wall met the transit support. No sirens. No grid challenge. Matte residual armour, full masks with blank optical bands, movement so clean it looked rehearsed against better opponents than a drunk in a worn coat. One carried a folded extraction frame—light, expensive, the kind of kit that did not appear on public enforcement inventories. Another held a suppressor rod already live, its tip shedding a low essence-field designed to keep a lattice from screaming to the wider net.
+
+Professional. Silent. Not here to talk.
+
+Nira's voice cut hard through the lattice. Extraction team. Black-budget residual. They are here for the chip. Move—
+
+The suppressor rod fired. Koriyx's lattice flared white-hot behind his eyes and then went thin, the hum dropping to a strangled thread. Nira's projection stuttered, cybernetic panels fracturing into static for a breath before she forced herself stable at a lower resolution. His knees dipped. Alcohol and age and the sudden loss of the constant background tone in his skull hit him together. He caught the transit support with the scarred hand and left a smear of nothing on the cold residual metal.
+
+They did not announce charges. They did not ask him to comply. Two moved to flank. The one with the extraction frame unfolded it in a series of soft mechanical clicks—a cradle shaped for a human head and the precise depth of a neural lattice. The fourth held a short-range cutter, its edge shimmering with a field meant to part skin and residual thread without cooking the prize. This was not an arrest. This was a harvest.
+
+Koriyx's body remembered older fights in a way his power no longer could. He had no Light architecture. No polarity scale. No second heartbeat sharing the load. What he had was a mortal frame, alcohol in the blood, and the simple animal refusal to let strangers open his skull on a wet street. He moved first because waiting was a kind of consent.
+
+Even so, the mismatch was immediate. Four trained bodies in residual armour against one ageing man still carrying three drinks and a bad knee. Their spacing was textbook. Their silence was budgeted. For a full second after he committed, nothing in their posture suggested they expected resistance that mattered—only a subject to drop, open, and leave.
+
+The closest flanker reached for a restraint collar. Koriyx slammed the man's wrist against the transit support hard enough to feel something give, then drove an elbow into the mask. Pain lit up his own arm. The mask did not crack. The man staggered half a step—professional, not invincible. The suppressor rod swung toward Koriyx's spine. He dropped his weight and let it pass over, shoulder screaming, and rammed the carrier into the wall. The rod skittered across wet stone and died in a gutter.
+
+Left side— Nira snapped, resolution still degraded under the residual noise of the fight.
+
+The cutter came in from the left. Koriyx turned too slow. The field-edge kissed his coat and the upper arm beneath it. Fabric and skin opened in a clean line. Multi-coloured blood—violet, gold, pale blue—ran hot down to his elbow. No elevated clotting. No godly seal. Just blood, bright and wrong under the essence-lamps, the same colours the city had filed under structural failure and preferred to forget.
+
+He hit the cutter-man in the throat with the heel of his scarred hand and felt the cartilaginous give of a strike that would buy seconds, not victory. The extraction frame was still coming. The fourth operative closed the distance with a restraint net already unfolding in the air, residual threads seeking joints and lattice signature alike.
+
+Somewhere above, the idle drone finally adjusted its hover, as if the local grid had noticed a disturbance and had not yet decided whether it was worth a unit response. The club door stayed shut. Mid-ward nights taught people not to look too long at quiet professionals with expensive kit.
+
+Koriyx's breath burned. The lattice in his skull flickered between thin hum and painful silence. Nira held her projection together by force of attention alone, eyes tracking angles he could not see fast enough. You cannot win clean, she said. Win ugly. Now.
+
+The net opened. Koriyx stepped into it instead of away—too close for the threads to bloom—and put his full mortal weight into the operative's centre. They went down together on the wet stone. The extraction frame clattered. Someone cursed inside a mask in a language the public grid did not prefer. Blood from Koriyx's arm painted a short arc across a blank optical band.
+
+He was still fighting when the second suppressor field hit him from behind, and the world narrowed to a white tunnel of lattice-scream and old alcohol and the simple fact of a body that had already given more than it had left.
+
+The second suppressor field should have finished him. It put him on his hands and knees on the wet stone, lattice screaming in a thin, broken register, vision tunnelling to the extraction frame still lying open a metre away like an invitation. Blood ran freely from the cutter line on his arm and dripped from his nose where the field had punched through residual channels that were never meant to take a black-budget spike. Alcohol rolled in his gut. Age sat on his shoulders like a second coat. The professional with the net was already rising. The one with the cutter had a knee and was reaching for the frame.
+
+Koriyx did not rise like a man who expected to win. He rose like a man who refused to be opened on a street that had already forgotten his name.
+
+He grabbed the dead suppressor rod from the gutter and swung it as pure metal. It caught the cutter-man across the mask hard enough to turn the optical band opaque. The man dropped. Koriyx used the fall to take the cutter from nerveless fingers and jammed the live field-edge into the nearest joint of the residual armour—not elegant, not trained, just close and desperate. Essence-insulation cracked. The operative made a sound inside the mask that was not professional. Koriyx ripped the cutter free and fell back against the transit support as the net-man closed.
+
+Nira's projection was a stuttering outline at the edge of his failing lattice. Behind—
+
+He turned too late for grace and just in time for survival. The restraint net kissed his shoulder and the residual threads tried to find purchase on the lattice signature. He tore free with a sound of fabric and skin and left more multi-coloured blood on the stone. The net-man adjusted, still calm, still working a checklist. These people had done this before. They had not done it to someone who had once held a sentence in the open air and lived long enough to become ordinary.
+
+Koriyx hit him low. Mortal weight, bad knee, scarred hand driving for the gap under the armour plate. They went down in a heap of matte residual and wet stone, and the extraction frame skittered further into the gutter. The fourth operative—the one who had carried the frame—came in with a short baton live with stun-charge. It took Koriyx across the ribs. Something in his side gave with a bright, precise pain. He lost the cutter. He did not lose the distance. He got a hand into the man's mask seal and wrenched until the blank optical band tore free and the face underneath showed surprise for the first time.
+
+Then he put the man's head into the transit support and stopped counting the impacts when the body stopped trying to rise.
+
+Three down. One still moving. The net-man had the frame again. Koriyx's lattice flickered hard. Nira's voice came through in broken packets. Vitals crashing. Blood loss. Possible rib. Lattice integrity at—
+
+"I know." He said it through blood. He did not know. He only knew the frame was coming toward his head and that he was not going to lie still for it.
+
+He met the last operative in the middle of the wet street under the tired essence-lamps. No witnesses who would admit to seeing. No drone response yet—or the drone had been paid not to respond. The net-man was good. Koriyx was dying by inches and still moving. They traded damage in a short, ugly interval that left Koriyx on his back with the man's weight on his chest and the extraction frame's cradle descending toward his skull.
+
+He got his scarred hand up between the cradle and his face and held it there while the professional applied pressure and the lattice screamed and blood made the residual metal slick.
+
+Koriyx. Nira's voice sharpened past commentary into command protocol he had never authorised. The lattice itself seemed to seize a hard involuntary spike that burned behind his eyes as she forced a channel through residual noise and suppressor echo alike. Override. Emergency medical. Priority trauma. Location locked.
+
+The call left the lattice whether the suppressor fields wanted it to or not—a hard residual scream into the public emergency band, tagged with enough trauma markers that even a mid-ward night system would have to answer. For a fraction of a second, every nearby essence-lamp flickered in sympathy with the forced broadcast. The net-man's head turned a fraction toward the sound of approaching response tones. That fraction was all Koriyx had left.
+
+He used it. He drove his forehead into the exposed face above him and felt the man's weight shift. He rolled, dragging pain through the damaged ribs like wire, and put the last of his strength into a strike that was not technique and not glory—only the refusal to be harvested. The operative went down and stayed down. The extraction frame lay open beside them, empty, expensive, and useless.
+
+Koriyx tried to stand. His body refused. He made it as far as one knee, and the transit support and then the street tilted hard. Blood from the arm and the nose and somewhere inside the coat pooled under him in colours the public record still preferred to call structural failure. The lattice hum collapsed into irregular static. Nira held her projection together at the edge of his failing field, grey eyes reflecting essence-lamps that were starting to smear.
+
+Stay awake.
+
+"Trying."
+
+Response units: ninety seconds. You have done enough. Do not add dying to it.
+
+He almost laughed. It came out as blood and air. Somewhere above the mid-ward, the first emergency beacon painted the wet stone in rotating light. The masked unit did not wait for it. The ones who could still move dragged their own toward a blind cut and were gone with the same clean silence they had arrived with—professionals cutting losses, not martyrs. The extraction frame stayed behind like a signature.
+
+Koriyx's vision narrowed to Nira's stuttering outline and the simple fact of the stone under his cheek. Pride had already died somewhere between the third drink and the first suppressor field. What remained was a mortal man on a wet street, waiting for strangers to keep him from finishing the job the mud had started.
+
+The lights got closer. The lattice went dark.
+
+Pain returned before memory did. It arrived as a low continuous pressure along the ribs, a tight burn in the upper arm, and a deeper wrongness at the base of the skull where the lattice lived. Machines spoke in soft residual tones. Air smelled of sterilant and filtered essence. The light was too clean for a mid-ward street and too steady for a club.
+
+Koriyx opened his eyes. Hospital. Private enough that the ceiling did not carry public advertising. A status web hovered at the edge of vision—vitals, lattice integrity, blood replacement in progress. Multi-coloured lines on the monitoring field tracked what ordinary medicine still struggled to classify. Someone had cleaned the blood off his skin and left the scars visible under the edge of the gown.
+
+Nira was present at low resolution in the lattice field, cybernetic edges muted, eyes watching him with the particular stillness she used when she was counting what he had almost spent. You are awake, she said. Do not sit up. Ribs. Arm. Lattice is stable enough. Barely.
+
+He did not sit up. He turned his head.
+
+Lucina was there. She sat in the chair beside the bed as if the chair had been chosen for her rather than provided by the ward. Older—his years, or close enough—and the years had not diluted her. They had refined her. The gold of her eyes was clear and exact. Her hair, silver-white, was cut in a line that belonged to money and decisions, not survival. The coat she wore was residual-silk, dark enough to drink the clean hospital light, fitted, intentional. No mid-ward wear. No debt-board dust. At the door, just inside the frame, stood two bodyguards in quiet professional kit—not masked harvesters, not street units. Private. Expensive. Their optics tracked the corridor and did not enter the room's emotional field. Even the air near the bed seemed to have been arranged around her: less sterilant bite, more the faint costly scent of residual-silk and whatever distant district she now called ordinary.
+
+She looked like someone who had walked roads that were not defined by war and had learned how to own the temperature of a room.
+
+Koriyx's throat closed. Pride was a young man's architecture. It required a future self worth defending and a past self worth performing. On a wet street with an extraction frame descending toward his skull, pride had already finished dying. What remained in the clean light of the hospital was simpler and worse.
+
+He cried. Not performatively. Not with the elevated dignity of someone who had once held a sentence in the open air. The tears came hot and immediate, cutting tracks through the residual sterilant smell, and his scarred hand lifted from the sheet as if it might still reach a bond that no longer carried current. His ribs punished every uneven breath; the lattice hummed a thin uneven note in time with the shaking he could not stop. He tried once to close his mouth on the sound and failed. There was no elevated self left to be embarrassed for. There was only the fact of her face in a room that had no right to contain it, and a body too damaged and too old to keep the missing in a straight line.
+
+Nira said nothing. Some silences were not commentary.
+
+"Lucina." The name came out broken.
+
+She did not move closer at once. She watched him with a steadiness that held both distance and the absence of cruelty. When she finally leaned in, the coat whispered residual silk, and the faint scent of something expensive and unfamiliar cut through the hospital air. One of the bodyguards shifted weight at the door and settled again.
+
+"I'm here," she said. Simple. Present. Not a rescue speech.
+
+Koriyx's breath shuddered through the damaged ribs. Multi-coloured monitoring lines spiked and eased. He did not wipe his face.
+
+"I missed you." The words landed raw, without strategy. "Every night it got quiet enough to hear it. I missed you until I stopped pretending."
+
+Her eyes held his. Older gold. No night-density waiting behind them—or if it was there, it was leashed under wealth and years and whatever she had become on roads he had not walked. The bond between them, frayed and stripped of current since the letter, ached like a second pulse finding an answering one for the first time in too long.
+
+She did not tell him it was all right. She did not tell him he looked fine. She reached out and put her hand over the scarred back of his, careful of the line where the cutter had opened him, and the contact was ordinary and mortal and enough to break whatever had still been holding his breathing in a straight line.
+
+"I know," she said.
+
+Outside the private room, the hospital continued its clean cycle. Essence-lamps held steady. Somewhere a public board updated debt and triage and lattice scheduling. The mid-ward night that had tried to harvest his skull was already being filed under disturbance and unresolved assault, if it was being filed at all.
+
+Inside the room, a man in his fifties, mortal, cut, lattice-humming, cried without pride in front of the woman he had lost to ordinary wind and ordinary roads—and for the first time since the letter, the quiet had a living answer in it.
+
+Nira held her projection at the edge of the field and did not interrupt. Some diamond-cutting was not done with Light. It was done with the simple fact of still being alive.`;
+
+    // Master State Object
+    const defaultSanctumState = {
+      authorPortrait: generateAuthorPlaceholderSvg(),
+      customLogo: "",
+      bokamosoCover: generateBookCoverSvg('bokamoso'),
+      authorBio: "Born and rooted in South Africa, Mamalema Brian Molepo is a dark speculative architect fascinated by the unknown, what humanity could evolve into, and the rawest, darkest emotions we rarely dare to name.\n\nRefusing to imitate Earth’s history or traditional fantasy tropes, he forged Elyrius—a realm without race, governed entirely by Essence, duality, and consequence. With Dualitas Rerum as its foundation, his life’s work is an ambitious 100-novel universe published exclusively in written forms—PDF, Paperback, and Hardcover—because the voices of Elyrius are meant to whisper directly inside the reader’s own mind.",
+      socials: {
+        amazon: "https://www.amazon.com/dp/B0FQVNKSHS",
+        instagram: "https://instagram.com",
+        tiktok: "https://tiktok.com",
+        goodreads: "https://goodreads.com"
+      },
+      books: [
+        {
+          id: "book1",
+          number: "Book One",
+          title: "The Polarity Paradox",
+          tagline: "Prime Synergy & Primal Entropic were never meant to meet.",
+          era: "Era I &bull; The Ridge of Viandar",
+          asin: "B0FQVNKSHS",
+          amazonUrl: "https://www.amazon.com/dp/B0FQVNKSHS",
+          coverImg: generateBookCoverSvg('book1'),
+          blurb: "In the shadow of petrified iron-woods, young Koriyx carries a forbidden dual current beneath his ribs—answering neither to light nor to void. When an ash-skinned shadow-weaver strikes in the luminescent glade, the uncontrolled eruption costs him Liriana and triggers his family's exile.",
+          chapter1: CHAPTER_1_POLARITY_PARADOX
+        },
+        {
+          id: "book2",
+          number: "Book Two",
+          title: "Godfall",
+          tagline: "The doors are open. The age of gods ends in meat and ash.",
+          era: "Era II &bull; The Midnight Wards",
+          asin: "B0HKRSG144",
+          amazonUrl: "https://www.amazon.com/dp/B0HKRSG144",
+          coverImg: generateBookCoverSvg('book2'),
+          blurb: "Under midnight rain and blue essence-lamps, marked corpses rise with black wings and speak ancient prophecies of the Queen's death. Fighting beside Nira and golden-eyed Lucina, Koriyx confronts a harvest of gods that leaves the lower wards burning—and witnessed.",
+          chapter1: CHAPTER_1_GODFALL
+        },
+        {
+          id: "book3",
+          number: "Book Three",
+          title: "The Polarity.exe",
+          tagline: "Mortal, cut, and lattice-humming in neon futuristic Elyrius.",
+          era: "Era III &bull; Futuristic Mid-Ward",
+          asin: "B0HPZKZBYR",
+          amazonUrl: "https://www.amazon.com/dp/B0HPZKZBYR",
+          coverImg: generateBookCoverSvg('book3'),
+          blurb: "Fifty-something, scarred, and stripped of godly seals, Koriyx survives on debt-ridden neon streets with Nira flickering in his neural lattice. After surviving a black-budget extraction ambush in the rain, he wakes to a quiet, devastating reunion with Lucina.",
+          chapter1: CHAPTER_1_POLARITY_EXE
+        }
+      ],
+      merch: [
+        {
+          id: "merch-1",
+          category: "Direct Author Edition",
+          name: "Dualitas Rerum Complete PDF Trilogy",
+          price: "R280 / $15",
+          description: "DRM-free collector PDF bundle of Books I, II & III with high-resolution cover plates and Elyrius glossary.",
+          image: generateRelicSvg("Dualitas Rerum PDF Vault", "Direct PDF Bundle", "#f59e0b"),
+          buyUrl: "https://www.amazon.com/dp/B0FQVNKSHS"
+        },
+        {
+          id: "merch-2",
+          category: "Hardcover Edition",
+          name: "Collector Hardcover — Book I–III",
+          price: "R490 / $26",
+          description: "Matte gothic hardcover editions printed for permanent shelf ritual—crafted for reading in the quiet hours.",
+          image: generateRelicSvg("Collector Hardcovers", "Amazon Print", "#38bdf8"),
+          buyUrl: "https://www.amazon.com/dp/B0FQVNKSHS"
+        },
+        {
+          id: "merch-3",
+          category: "Bokamoso Art Relic",
+          name: "Celestial Serpent Foil Print",
+          price: "R350 / $19",
+          description: "Archival metallic azure & gold print featuring the Stardust Serpent and essence-marked vessel of Bokamoso.",
+          image: generateRelicSvg("Stardust Serpent Print", "Limited Relic", "#38bdf8"),
+          buyUrl: "https://www.amazon.com/dp/B0HKRSG144"
+        },
+        {
+          id: "merch-4",
+          category: "Sanctum Apparel",
+          name: "Dual-Current Sigil Cloak Hoodie",
+          price: "R750 / $42",
+          description: "Heavyweight obsidian black apparel embroidered with Prime Synergy azure and Primal Entropic gold geometry.",
+          image: generateRelicSvg("Dual-Current Hoodie", "Elyrius Apparel", "#8b5cf6"),
+          buyUrl: "https://www.amazon.com/dp/B0HPZKZBYR"
+        }
+      ]
+    };
+
+    // Load from embedded data (if exported) or localStorage or default
+    let state = window.EXPORTED_SANCTUM_STATE
+      ? JSON.parse(JSON.stringify(window.EXPORTED_SANCTUM_STATE))
+      : (localStorage.getItem('molepo_elyrius_sanctum_v1')
+          ? JSON.parse(localStorage.getItem('molepo_elyrius_sanctum_v1'))
+          : JSON.parse(JSON.stringify(defaultSanctumState)));
+
+    let isEntropicMode = false;
+    let currentReaderBookIdx = 0;
+    let readerFontSize = 21;
+
+    function persistState() {
+      try {
+        localStorage.setItem('molepo_elyrius_sanctum_v1', JSON.stringify(state));
+      } catch (err) {
+        console.warn('Storage limit reached for large images; export HTML to save permanently.', err);
+      }
+    }
+
+    // Render Complete Sanctum
+    function renderSanctum() {
+      document.getElementById('year-now').textContent = new Date().getFullYear();
+
+      // Custom Logo vs Default SVG Sigil
+      if (state.customLogo) {
+        document.getElementById('default-sigil-svg').classList.add('hidden');
+        const logoImg = document.getElementById('custom-logo-img');
+        logoImg.src = state.customLogo;
+        logoImg.classList.remove('hidden');
+      } else {
+        document.getElementById('default-sigil-svg').classList.remove('hidden');
+        document.getElementById('custom-logo-img').classList.add('hidden');
+      }
+
+      // Hero Fanned Covers
+      document.getElementById('hero-fan-1').src = state.books[0].coverImg;
+      document.getElementById('hero-fan-2').src = state.books[1].coverImg;
+      document.getElementById('hero-fan-3').src = state.books[2].coverImg;
+
+      // Bokamoso Future Cover
+      document.getElementById('bokamoso-cover-img').src = state.bokamosoCover;
+
+      // Author Portrait & Bio
+      document.getElementById('architect-portrait').src = state.authorPortrait;
+      document.getElementById('architect-bio').innerHTML = state.authorBio
+        .split('\n\n')
+        .filter(p => p.trim())
+        .map(p => `<p>${escapeHtml(p)}</p>`)
+        .join('');
+
+      document.getElementById('link-amazon-author').href = state.socials.amazon || '#';
+      document.getElementById('link-instagram').href = state.socials.instagram || '#';
+      document.getElementById('link-tiktok').href = state.socials.tiktok || '#';
+      document.getElementById('link-goodreads').href = state.socials.goodreads || '#';
+
+      // Render Foundation Trilogy Cards
+      const trilogyGrid = document.getElementById('trilogy-grid');
+      trilogyGrid.innerHTML = state.books.map((book, idx) => `
+        <article class="gothic-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <span class="px-3 py-1 rounded-full bg-stardust/15 border border-stardust/40 text-stardust font-mono text-xs uppercase tracking-widest">
+                ${escapeHtml(book.number)}
+              </span>
+              <span class="font-mono text-[11px] text-azure-light">${book.era}</span>
+            </div>
+
+            <!-- Book Cover -->
+            <div onclick="openChapterReader(${idx})" class="w-48 sm:w-52 mx-auto mb-6 cursor-pointer">
+              <div class="tome-cover rounded-xl overflow-hidden border border-stardust/40 aspect-[2/3] bg-obsidian">
+                <img src="${book.coverImg}" alt="${escapeHtml(book.title)} Cover" class="w-full h-full object-cover" />
+              </div>
+            </div>
+
+            <div class="text-center space-y-2 mb-4">
+              <h3 class="font-display text-2xl font-bold text-parchment">${escapeHtml(book.title)}</h3>
+              <p class="font-prose italic text-lg text-stardust-light">“${escapeHtml(book.tagline)}”</p>
+            </div>
+
+            <p class="text-sm text-ash leading-relaxed mb-5">
+              ${escapeHtml(book.blurb)}
+            </p>
+
+            <!-- Formats Strip (Explicitly No Audiobook) -->
+            <div class="flex flex-wrap justify-center gap-1.5 mb-6 font-mono text-[10px]">
+              <span class="px-2.5 py-1 rounded bg-obsidian border border-stardust/30 text-stardust">Kindle / PDF</span>
+              <span class="px-2.5 py-1 rounded bg-obsidian border border-azure/30 text-azure-light">Paperback</span>
+              <span class="px-2.5 py-1 rounded bg-obsidian border border-entropic/30 text-entropic-light">Hardcover</span>
+              <span class="px-2.5 py-1 rounded bg-crimson/15 border border-crimson/30 text-crimson-light">No Audio</span>
+            </div>
+          </div>
+
+          <div class="space-y-3 pt-4 border-t border-stardust/15">
+            <a href="${escapeHtml(book.amazonUrl)}" target="_blank" rel="noopener noreferrer"
+               class="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-stardust-dark via-stardust to-amber-500 text-obsidian font-serif font-bold text-xs uppercase tracking-wider hover:brightness-110 transition flex items-center justify-center gap-2 shadow-lg">
+              <i class="fa-brands fa-amazon text-base"></i>
+              <span>Acquire on Amazon KDP</span>
+            </a>
+            <button onclick="openChapterReader(${idx})"
+                    class="w-full py-3 px-4 rounded-xl bg-obsidian hover:bg-azure/10 border border-azure/40 text-azure-light font-serif text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-book-open"></i>
+              <span>Read Full Chapter I</span>
+            </button>
+          </div>
+        </article>
+      `).join('');
+
+      // Render 100-Tome Seal Matrix
+      const matrix = document.getElementById('hundred-tomes-grid');
+      let tilesHtml = '';
+      for (let i = 1; i <= 100; i++) {
+        if (i <= 3) {
+          const b = state.books[i - 1];
+          tilesHtml += `
+            <button onclick="openChapterReader(${i - 1})" title="Tome #00${i}: ${escapeAttr(b.title)} (LIVE)"
+              class="aspect-square rounded bg-stardust/25 border border-stardust text-stardust font-mono text-[10px] font-bold flex items-center justify-center hover:scale-110 transition">
+              ${i}
+            </button>`;
+        } else if (i === 4) {
+          tilesHtml += `
+            <div title="Tome #004: Stardust Essence: Bokamoso (IN FORGING)"
+              class="aspect-square rounded bg-azure/25 border border-azure text-azure-light font-mono text-[10px] font-bold flex items-center justify-center animate-pulse">
+              4
+            </div>`;
+        } else {
+          tilesHtml += `
+            <div title="Tome #${String(i).padStart(3, '0')}: Sealed in the Elyrius Cosmos"
+              class="aspect-square rounded bg-obsidian border border-slate-800/80 text-slate-600 font-mono text-[9px] flex items-center justify-center">
+              ${i}
+            </div>`;
+        }
+      }
+      matrix.innerHTML = tilesHtml;
+
+      // Render Reliquary Merch Grid
+      const merchGrid = document.getElementById('merch-grid');
+      merchGrid.innerHTML = state.merch.map((item) => `
+        <div class="gothic-card rounded-2xl overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="relative aspect-square bg-obsidian overflow-hidden border-b border-stardust/20 group">
+              <img src="${item.image}" alt="${escapeAttr(item.name)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-obsidian/90 border border-stardust/40 text-stardust font-mono text-[10px] uppercase">
+                ${escapeHtml(item.category)}
+              </span>
+              <span class="absolute bottom-3 right-3 px-3 py-1 rounded-lg bg-void/95 border border-azure/40 text-azure-light font-mono font-bold text-xs">
+                ${escapeHtml(item.price)}
+              </span>
+            </div>
+            <div class="p-5 space-y-2">
+              <h3 class="font-serif text-lg font-bold text-parchment">${escapeHtml(item.name)}</h3>
+              <p class="text-xs text-ash leading-relaxed">${escapeHtml(item.description)}</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a href="${escapeHtml(item.buyUrl)}" target="_blank" rel="noopener noreferrer"
+               class="w-full py-3 px-4 rounded-xl bg-obsidian hover:bg-stardust hover:text-obsidian border border-stardust/40 text-stardust font-serif font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+              <span>Claim Artifact</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // =====================================================================
+    // CHAPTER I IMMERSIVE READER CONTROLS
+    // =====================================================================
+    function openChapterReader(bookIdx) {
+      currentReaderBookIdx = bookIdx;
+      const book = state.books[bookIdx];
+
+      document.getElementById('reader-series-badge').textContent = `DUALITAS RERUM • ${book.number.toUpperCase()}`;
+      document.getElementById('reader-book-title').textContent = book.title;
+      document.getElementById('reader-amazon-btn').href = book.amazonUrl;
+
+      const nextIdx = (bookIdx + 1) % state.books.length;
+      const nextBtn = document.getElementById('reader-next-book-btn');
+      nextBtn.textContent = `Next: ${state.books[nextIdx].title} (Ch. I) →`;
+      nextBtn.onclick = () => openChapterReader(nextIdx);
+
+      // Format paragraphs cleanly
+      const proseHtml = book.chapter1
+        .split('\n\n')
+        .filter(p => p.trim())
+        .map(p => `<p>${escapeHtml(p.trim())}</p>`)
+        .join('');
+      document.getElementById('reader-prose-content').innerHTML = proseHtml;
+
+      // Update active reader tab styling
+      document.querySelectorAll('.reader-tab').forEach((tab, idx) => {
+        if (idx === bookIdx) {
+          tab.className = 'reader-tab px-3 py-1.5 rounded-lg font-mono text-xs border border-stardust text-stardust bg-stardust/15 whitespace-nowrap';
+        } else {
+          tab.className = 'reader-tab px-3 py-1.5 rounded-lg font-mono text-xs border border-slate-700 text-ash hover:text-parchment whitespace-nowrap';
+        }
+      });
+
+      const modal = document.getElementById('chapter-modal');
+      modal.classList.remove('hidden');
+      document.getElementById('reader-scroll-area').scrollTop = 0;
+    }
+
+    function closeChapterReader() {
+      document.getElementById('chapter-modal').classList.add('hidden');
+    }
+
+    function adjustReaderFont(delta) {
+      readerFontSize = Math.min(28, Math.max(16, readerFontSize + delta));
+      document.getElementById('reader-prose-content').style.fontSize = readerFontSize + 'px';
+    }
+
+    // =====================================================================
+    // ESSENCE ALIGNMENT SWITCHER (PRIME SYNERGY VS PRIMAL ENTROPIC)
+    // =====================================================================
+    function toggleEssenceMode() {
+      isEntropicMode = !isEntropicMode;
+      document.body.classList.toggle('mode-entropic', isEntropicMode);
+      const label = document.getElementById('essence-label');
+      const dot = document.getElementById('essence-dot');
+      const btn = document.getElementById('essence-toggle-btn');
+
+      if (isEntropicMode) {
+        label.textContent = 'Primal Entropic';
+        dot.className = 'w-2 h-2 rounded-full bg-crimson animate-pulse';
+        btn.className = 'flex items-center gap-2 px-3 py-2 rounded-xl bg-void border border-entropic/60 text-[11px] font-mono uppercase tracking-wider text-entropic-light transition';
+        showToast('Resonance shifted to Primal Entropic — Void & Crimson awakened.');
+      } else {
+        label.textContent = 'Prime Synergy';
+        dot.className = 'w-2 h-2 rounded-full bg-azure animate-pulse';
+        btn.className = 'flex items-center gap-2 px-3 py-2 rounded-xl bg-void border border-azure/40 hover:border-stardust text-[11px] font-mono uppercase tracking-wider text-azure-light transition';
+        showToast('Resonance shifted to Prime Synergy — Celestial Azure & Gold.');
+      }
+    }
+
+    function toggleMobileNav() {
+      document.getElementById('mobile-nav').classList.toggle('hidden');
+    }
+
+    function submitWhisperForm(e) {
+      e.preventDefault();
+      document.getElementById('whisper-form').classList.add('hidden');
+      document.getElementById('whisper-success').classList.remove('hidden');
+      showToast('Your essence signature is bound to The Whispering Dispatch.');
+    }
+
+    // =====================================================================
+    // SANCTUM CUSTOMIZER & STANDALONE HTML EXPORTER
+    // =====================================================================
+    function openCustomizer(initialTab = 'covers') {
+      populateCustomizerFields();
+      switchCustTab(initialTab);
+      document.getElementById('customizer-drawer').classList.remove('hidden');
+    }
+
+    function closeCustomizer() {
+      document.getElementById('customizer-drawer').classList.add('hidden');
+    }
+
+    function switchCustTab(tab) {
+      document.querySelectorAll('.cust-panel').forEach(p => p.classList.add('hidden'));
+      document.getElementById(`cust-panel-${tab}`).classList.remove('hidden');
+
+      document.querySelectorAll('.cust-tab').forEach(t => {
+        t.classList.remove('text-stardust', 'border-b-2', 'border-stardust');
+        t.classList.add('text-ash');
+      });
+      const active = document.getElementById(`cust-tab-${tab}`);
+      active.classList.remove('text-ash');
+      active.classList.add('text-stardust', 'border-b-2', 'border-stardust');
+    }
+
+    function populateCustomizerFields() {
+      // Books Upload & Links
+      document.getElementById('cust-books-container').innerHTML = state.books.map((b, i) => `
+        <div class="p-4 rounded-xl bg-sanctum border border-stardust/30 space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="font-serif font-bold text-stardust">${escapeHtml(b.number)}: ${escapeHtml(b.title)}</h4>
+            <span class="font-mono text-[10px] text-ash">ASIN: ${escapeHtml(b.asin)}</span>
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono uppercase text-azure-light mb-1">Upload Cover Image File</label>
+            <input type="file" accept="image/*" onchange="handleBookCoverFile(event, ${i})" class="text-xs text-ash file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-stardust/20 file:text-stardust" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono uppercase text-ash mb-1">Amazon KDP Link</label>
+            <input type="url" value="${escapeAttr(b.amazonUrl)}" oninput="updateBookProp(${i}, 'amazonUrl', this.value)" class="w-full px-3 py-2 rounded-lg bg-obsidian border border-stardust/25 text-parchment text-xs" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-mono uppercase text-ash mb-1">Back-Cover Synopsis</label>
+            <textarea rows="2" oninput="updateBookProp(${i}, 'blurb', this.value)" class="w-full px-3 py-2 rounded-lg bg-obsidian border border-stardust/25 text-parchment text-xs">${escapeHtml(b.blurb)}</textarea>
+          </div>
+        </div>
+      `).join('');
+
+      // Architect fields
+      document.getElementById('edit-author-bio').value = state.authorBio;
+      document.getElementById('edit-link-amazon').value = state.socials.amazon;
+      document.getElementById('edit-link-ig').value = state.socials.instagram;
+      document.getElementById('edit-link-tt').value = state.socials.tiktok;
+      document.getElementById('edit-link-gr').value = state.socials.goodreads;
+
+      // Merch fields
+      document.getElementById('cust-merch-container').innerHTML = state.merch.map((m, i) => `
+        <div class="p-4 rounded-xl bg-sanctum border border-stardust/30 space-y-3">
+          <h4 class="font-serif font-bold text-stardust">Artifact #${i + 1}: ${escapeHtml(m.name)}</h4>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-[10px] font-mono uppercase text-ash mb-1">Item Name</label>
+              <input type="text" value="${escapeAttr(m.name)}" oninput="updateMerchProp(${i}, 'name', this.value)" class="w-full px-3 py-1.5 rounded-lg bg-obsidian border border-stardust/25 text-parchment text-xs" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-mono uppercase text-ash mb-1">Price (ZAR / USD)</label>
+              <input type="text" value="${escapeAttr(m.price)}" oninput="updateMerchProp(${i}, 'price', this.value)" class="w-full px-3 py-1.5 rounded-lg bg-obsidian border border-stardust/25 text-parchment text-xs" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-[10px] font-mono uppercase text-ash mb-1">Checkout / Store URL</label>
+            <input type="url" value="${escapeAttr(m.buyUrl)}" oninput="updateMerchProp(${i}, 'buyUrl', this.value)" class="w-full px-3 py-1.5 rounded-lg bg-obsidian border border-stardust/25 text-parchment text-xs" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-mono uppercase text-azure-light mb-1">Upload Product Photo</label>
+            <input type="file" accept="image/*" onchange="handleMerchImageFile(event, ${i})" class="text-xs text-ash file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-azure/20 file:text-azure-light" />
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateBookProp(idx, key, val) {
+      state.books[idx][key] = val;
+      persistState();
+      renderSanctum();
+    }
+
+    function updateMerchProp(idx, key, val) {
+      state.merch[idx][key] = val;
+      persistState();
+      renderSanctum();
+    }
+
+    function syncAuthorEdits() {
+      state.authorBio = document.getElementById('edit-author-bio').value;
+      state.socials.amazon = document.getElementById('edit-link-amazon').value;
+      state.socials.instagram = document.getElementById('edit-link-ig').value;
+      state.socials.tiktok = document.getElementById('edit-link-tt').value;
+      state.socials.goodreads = document.getElementById('edit-link-gr').value;
+      persistState();
+      renderSanctum();
+    }
+
+    function readFileAsBase64(file, cb) {
+      const reader = new FileReader();
+      reader.onload = e => cb(e.target.result);
+      reader.readAsDataURL(file);
+    }
+
+    function handleFileUpload(event, stateKey) {
+      const file = event.target.files[0];
+      if (!file) return;
+      readFileAsBase64(file, (dataUrl) => {
+        state[stateKey] = dataUrl;
+        persistState();
+        renderSanctum();
+        showToast('Image embedded into your Elyrius Sanctum!');
+      });
+    }
+
+    function handleBookCoverFile(event, bookIdx) {
+      const file = event.target.files[0];
+      if (!file) return;
+      readFileAsBase64(file, (dataUrl) => {
+        state.books[bookIdx].coverImg = dataUrl;
+        persistState();
+        renderSanctum();
+        showToast(`Embedded cover for ${state.books[bookIdx].title}!`);
+      });
+    }
+
+    function handleMerchImageFile(event, merchIdx) {
+      const file = event.target.files[0];
+      if (!file) return;
+      readFileAsBase64(file, (dataUrl) => {
+        state.merch[merchIdx].image = dataUrl;
+        persistState();
+        renderSanctum();
+        showToast(`Updated photo for Artifact #${merchIdx + 1}!`);
+      });
+    }
+
+    function resetSanctumData() {
+      localStorage.removeItem('molepo_elyrius_sanctum_v1');
+      state = JSON.parse(JSON.stringify(defaultSanctumState));
+      populateCustomizerFields();
+      renderSanctum();
+      showToast('Sanctum restored to default state.');
+    }
+
+    function exportReadyWebsite() {
+      const clone = document.documentElement.cloneNode(true);
+      const drawer = clone.querySelector('#customizer-drawer');
+      if (drawer) drawer.classList.add('hidden');
+      const modal = clone.querySelector('#chapter-modal');
+      if (modal) modal.classList.add('hidden');
+
+      const script = document.createElement('script');
+      script.textContent = `window.EXPORTED_SANCTUM_STATE = ${JSON.stringify(state)};`;
+      clone.querySelector('head').appendChild(script);
+
+      const htmlOut = '<!DOCTYPE html>\n' + clone.outerHTML;
+      const blob = new Blob([htmlOut], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'mb-molepo-elyrius-sanctum.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Downloaded mb-molepo-elyrius-sanctum.html with all your images!');
+    }
+
+    function showToast(msg) {
+      const box = document.getElementById('toast-container');
+      const el = document.createElement('div');
+      el.className = 'pointer-events-auto px-5 py-3.5 rounded-xl bg-void border border-stardust/60 text-parchment font-mono text-xs shadow-2xl flex items-center gap-3 transition-opacity duration-300';
+      el.innerHTML = `<i class="fa-solid fa-sparkles text-stardust"></i><span>${escapeHtml(msg)}</span>`;
+      box.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        setTimeout(() => el.remove(), 300);
+      }, 3600);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function escapeAttr(str) {
+      return escapeHtml(str).replace(/'/g, '&#39;');
+    }
+
+    // =====================================================================
+    // LIVING CELESTIAL STARDUST SERPENT (INSPIRED BY BOKAMOSO'S COVER)
+    // =====================================================================
+    function initCelestialSerpent() {
+      const canvas = document.getElementById('serpent-ritual-canvas');
+      const ctx = canvas.getContext('2d');
+      let W = canvas.width = window.innerWidth;
+      let H = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      });
+
+      let mouseX = W * 0.7;
+      let mouseY = H * 0.35;
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      // Serpent Spine Segments
+      const numSegments = 68;
+      const segments = Array.from({ length: numSegments }, (_, i) => ({
+        x: W * 0.5,
+        y: H * 0.3 + i * 8
+      }));
+
+      // Stardust Essence Particles shed by the serpent
+      const stardust = Array.from({ length: 55 }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: -(Math.random() * 0.5 + 0.15),
+        r: Math.random() * 2.2 + 0.6,
+        alpha: Math.random() * 0.7 + 0.2,
+        isGold: Math.random() > 0.42
+      }));
+
+      let tick = 0;
+
+      function animateRitual() {
+        tick += 0.014;
+        ctx.clearRect(0, 0, W, H);
+
+        const scrollFactor = window.scrollY * 0.0022;
+
+        // Colossal figure-eight / coiling ritual path across the screen
+        const targetX = W * 0.5 + Math.sin(tick * 0.85 + scrollFactor) * (W * 0.34) + (mouseX - W * 0.5) * 0.08;
+        const targetY = H * 0.45 + Math.cos(tick * 0.65 + scrollFactor * 0.7) * (H * 0.28) + (mouseY - H * 0.5) * 0.08;
+
+        // Smooth head movement
+        segments[0].x += (targetX - segments[0].x) * 0.045;
+        segments[0].y += (targetY - segments[0].y) * 0.045;
+
+        // Follow-the-leader spine kinematics with sinusoidal undulation
+        const segSpacing = Math.max(7, Math.min(12, W / 110));
+        for (let i = 1; i < numSegments; i++) {
+          const prev = segments[i - 1];
+          const curr = segments[i];
+          const dx = prev.x - curr.x;
+          const dy = prev.y - curr.y;
+          const angle = Math.atan2(dy, dx) + Math.sin(tick * 3.2 - i * 0.28) * 0.045;
+
+          curr.x = prev.x - Math.cos(angle) * segSpacing;
+          curr.y = prev.y - Math.sin(angle) * segSpacing;
+        }
+
+        // Shed golden stardust from serpent's body
+        if (Math.random() < 0.45) {
+          const randSeg = segments[Math.floor(Math.random() * (numSegments * 0.7))];
+          const p = stardust[Math.floor(Math.random() * stardust.length)];
+          p.x = randSeg.x + (Math.random() - 0.5) * 24;
+          p.y = randSeg.y + (Math.random() - 0.5) * 24;
+          p.alpha = 0.85;
+        }
+
+        // Draw Ambient Stardust Threads
+        for (const p of stardust) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha *= 0.996;
+          if (p.alpha < 0.08 || p.y < -10) {
+            p.x = Math.random() * W;
+            p.y = H + 10;
+            p.alpha = Math.random() * 0.6 + 0.2;
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.isGold
+            ? (isEntropicMode ? `rgba(220, 38, 38, ${p.alpha})` : `rgba(245, 158, 11, ${p.alpha})`)
+            : (isEntropicMode ? `rgba(139, 92, 246, ${p.alpha})` : `rgba(56, 189, 248, ${p.alpha})`);
+          ctx.fill();
+        }
+
+        // Draw Serpent Body (from tail to head)
+        for (let i = numSegments - 1; i >= 0; i--) {
+          const seg = segments[i];
+          const progress = 1 - i / numSegments; // 1 at head, 0 at tail
+          const radius = Math.sin(progress * Math.PI * 0.85) * 18 + 2.5;
+
+          // Outer Bioluminescent Aura
+          ctx.beginPath();
+          ctx.arc(seg.x, seg.y, radius * 1.45, 0, Math.PI * 2);
+          ctx.fillStyle = isEntropicMode
+            ? `rgba(139, 92, 246, ${0.06 * progress})`
+            : `rgba(56, 189, 248, ${0.07 * progress})`;
+          ctx.fill();
+
+          // Scaled Body Segment
+          ctx.beginPath();
+          ctx.arc(seg.x, seg.y, radius, 0, Math.PI * 2);
+          ctx.fillStyle = isEntropicMode
+            ? `rgba(30, 16, 53, ${0.55 * progress + 0.15})`
+            : `rgba(12, 42, 74, ${0.58 * progress + 0.15})`;
+          ctx.fill();
+
+          // Scale Rim
+          ctx.lineWidth = 1;
+          ctx.strokeStyle = isEntropicMode
+            ? `rgba(167, 139, 250, ${0.32 * progress})`
+            : `rgba(56, 189, 248, ${0.35 * progress})`;
+          ctx.stroke();
+
+          // Golden Essence Vein along Dorsal Spine
+          if (i % 2 === 0 && i < numSegments - 3) {
+            ctx.beginPath();
+            ctx.arc(seg.x, seg.y, radius * 0.34, 0, Math.PI * 2);
+            ctx.fillStyle = isEntropicMode
+              ? `rgba(248, 113, 113, ${0.65 * progress})`
+              : `rgba(245, 158, 11, ${0.7 * progress})`;
+            ctx.fill();
+          }
+        }
+
+        // Draw Dragon-Serpent Head & Glowing Golden Eyes
+        const head = segments[0];
+        const neck = segments[1];
+        const headAngle = Math.atan2(head.y - neck.y, head.x - neck.x);
+
+        ctx.save();
+        ctx.translate(head.x, head.y);
+        ctx.rotate(headAngle);
+
+        // Horns / Essence Crest
+        ctx.strokeStyle = isEntropicMode ? 'rgba(220, 38, 38, 0.7)' : 'rgba(245, 158, 11, 0.75)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(-4, -9);
+        ctx.lineTo(-28, -20);
+        ctx.moveTo(-4, 9);
+        ctx.lineTo(-28, 20);
+        ctx.stroke();
+
+        // Sculpted Head Crown
+        ctx.fillStyle = isEntropicMode ? '#1e1035' : '#0b2545';
+        ctx.strokeStyle = isEntropicMode ? '#a78bfa' : '#38bdf8';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.moveTo(22, 0);
+        ctx.lineTo(-6, -14);
+        ctx.lineTo(-16, 0);
+        ctx.lineTo(-6, 14);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        // Twin Glowing Golden Eyes (from Bokamoso cover)
+        ctx.fillStyle = '#fbbf24';
+        ctx.shadowColor = '#f59e0b';
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.ellipse(5, -6, 3.5, 2, 0.2, 0, Math.PI * 2);
+        ctx.ellipse(5, 6, 3.5, 2, -0.2, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+
+        requestAnimationFrame(animateRitual);
+      }
+
+      animateRitual();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderSanctum();
+      initCelestialSerpent();
+    });
+  </script>
+</body>
+</html>
